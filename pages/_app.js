@@ -1,3 +1,5 @@
+import "../styles/globals.css";
+
 import AuthProvider from "@/src/providers/AuthProvider";
 import { SessionProvider } from "next-auth/react";
 
