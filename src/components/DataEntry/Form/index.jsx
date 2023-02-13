@@ -5,6 +5,8 @@ import Email from "./Email";
 import Password from "./Password";
 import Number from "./Number";
 import Select from "./Select";
+import Time from "./Time";
+import Date from "./Date";
 
 const Form = (props) => {
   const [errorState, setErrorState] = useState(false);
@@ -99,5 +101,7 @@ Form.Email = Email;
 Form.Password = Password;
 Form.Number = Number;
 Form.Select = Select;
+Form.Time = Time;
+Form.Date = Date;
 
 export default Form;

@@ -14,7 +14,7 @@ body {
 
 /* buttons */
 .btn {
-  @apply rounded-lg font-semibold  py-2 px-3 flex justify-center items-center active:scale-95 transition-all tracking-wide;
+  @apply rounded-2xl font-semibold  py-2 px-3 flex justify-center items-center active:scale-95 transition-all tracking-wide;
 }
 
 .btn-sm {
@@ -66,7 +66,7 @@ body {
 /* Icon */
 
 .btn-icon{
-  @apply btn rounded-full text-black bg-transparent p-3 hover:bg-primary/20;
+  @apply  rounded-full text-black bg-transparent p-3 hover:bg-primary/20;
 }
 
 /* typography */
@@ -93,7 +93,7 @@ form label {
 
 input,
 select {
-  @apply border-b outline-none pt-4 pb-2 rounded-t-md  w-full placeholder:text-transparent bg-transparent;
+  @apply border-b  outline-none pt-4 pb-2 rounded-t-md  w-full placeholder:text-transparent bg-transparent;
 }
 
 input ~ .input-animated-bar,
