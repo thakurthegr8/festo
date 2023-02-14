@@ -1,5 +1,5 @@
-import Grid from "@/src/components/Layout/Grid";
 import React from "react";
+import Grid from "@/src/components/Layout/Grid";
 import LeftColumn from "./LeftColumn";
 import RightColumn from "./RightColumn";
 
