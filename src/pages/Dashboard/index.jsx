@@ -14,7 +14,7 @@ const Dashboard = (props) => {
     <Grid styles="grid-cols-4 h-screen">
       <Sidebar />
       <Col styles="col-span-3">
-        <Container styles="px-2">
+        <Container >
           <Navbar withoutLogo />
           {props.children}
         </Container>
