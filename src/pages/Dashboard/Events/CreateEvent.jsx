@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Grid from "@/src/components/Layout/Grid";
 import Navbar from "@/src/sections/Navbar";
 import Col from "@/src/components/Layout/Col";
@@ -8,6 +8,9 @@ import Form from "@/src/components/DataEntry/Form";
 import Button from "@/src/components/General/Button";
 import Row from "@/src/components/Layout/Row";
 import PlusIcon from "@heroicons/react/20/solid/PlusIcon";
+import axios from "axios";
+import { uploadFile } from "@/src/services/storage";
+import Image from "next/image";
 
 const formFields = [
   { label: "Name", Input: Form.Text, name: "name" },
@@ -29,8 +32,33 @@ const formFields = [
 ];
 
 const CreateEvent = () => {
-  const onSubmit = (formData) => {
-    console.log(formData);
+  const fileUploadRef = useRef(null);
+  const [imageBlob, setImageBlob] = useState(null);
+  const onSubmit = async (formData) => {
+    if (imageBlob == null) return;
+
+    try {
+      const req = await axios.post("/api/events/create", formData);
+      const res = await req.data;
+      console.log(res);
+      if (res) {
+        const imageData = new FormData();
+        imageData.append("event-poster", imageBlob);
+        const uploadPoster = axios.post(
+          `/api/events/upload-poster?id=${res._id}`,
+          imageData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        const uploadPosterRes = await uploadPoster.data;
+        console.log(uploadPosterRes);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -46,6 +74,14 @@ const CreateEvent = () => {
               {formFields.map(({ Input, ...props }, index) => (
                 <Input {...props} key={index} />
               ))}
+              <input
+                type="file"
+                className="hidden"
+                name="event_poster"
+                accept="image/png, image/jpeg"
+                ref={fileUploadRef}
+                onChange={(e) => setImageBlob(e.target.files[0])}
+              />
               <Row>
                 <Button>Submit</Button>
               </Row>
@@ -53,10 +89,14 @@ const CreateEvent = () => {
           </Col>
           <Col styles="bg-gray-300 justify-center items-center gap-4">
             <Col styles="justify-center items-center bg-white rounded-full p-4 shadow-md">
-              <Button variant="btn-icon">
+              <Button
+                variant="btn-icon"
+                onClick={() => fileUploadRef.current.click()}
+              >
                 <PlusIcon className="w-6 h-6" />
               </Button>
             </Col>
+            {imageBlob && <Image src="" width={0} height={0} />}
             <Typography>Add Poster...</Typography>
           </Col>
         </Grid>
