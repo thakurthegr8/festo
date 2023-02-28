@@ -11,29 +11,32 @@ import PlusIcon from "@heroicons/react/20/solid/PlusIcon";
 import axios from "axios";
 import { uploadFile } from "@/src/services/storage";
 import Image from "next/image";
+import useGroups from "@/src/hooks/useGroups";
+import useLocations from "@/src/hooks/useLocations";
+import useCategories from "@/src/hooks/useCategories";
 
 const formFields = [
   { label: "Name", Input: Form.Text, name: "name" },
   { label: "Date", Input: Form.Date, name: "date" },
-  {
-    label: "Location",
-    Input: Form.Select,
-    name: "location",
-    options: [{ value: "ABC 1", placeholder: "abc1" }],
-  },
   { label: "Time", Input: Form.Time, name: "time" },
-  {
-    label: "Type",
-    Input: Form.Select,
-    name: "type",
-    options: [{ value: "ABC 1", placeholder: "abc1" }],
-  },
-  { label: "Group Reference", Input: Form.Text, name: "group_ref" },
+  // { label: "Group Reference", Input: Form.Text, name: "group_ref" },
 ];
 
 const CreateEvent = () => {
   const fileUploadRef = useRef(null);
   const [imageBlob, setImageBlob] = useState(null);
+  const groups = useGroups().map((item) => ({
+    placeholder: item.name,
+    value: item._id,
+  }));
+  const locations = useLocations().map((item) => ({
+    placeholder: item.name,
+    value: item._id,
+  }));
+  const categories = useCategories().map((item) => ({
+    placeholder: item.name,
+    value: item._id,
+  }));
 
   const uploadImage = async () => {
     const form = new FormData();
@@ -80,6 +83,21 @@ const CreateEvent = () => {
               {formFields.map(({ Input, ...props }, index) => (
                 <Input {...props} key={index} />
               ))}
+              <Form.Select
+                name="location"
+                label="Location"
+                options={locations}
+              />
+              <Form.Select
+                name="type"
+                label="Category"
+                options={categories}
+              />
+              <Form.Select
+                name="group_ref"
+                label="Group Reference"
+                options={groups}
+              />
               <input
                 type="file"
                 className="hidden"
@@ -88,7 +106,6 @@ const CreateEvent = () => {
                 ref={fileUploadRef}
                 onChange={(e) => setImageBlob(e.target.files[0])}
               />
-
               <Row>
                 <Button>Submit</Button>
               </Row>

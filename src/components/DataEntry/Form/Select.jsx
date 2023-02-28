@@ -20,11 +20,12 @@ const Select = (props) => {
         <option value="none" selected>
           None
         </option>
-        {props.options.map((item, index) => (
-          <option value={item.value} key={index}>
-            {item.placeholder}
-          </option>
-        ))}
+        {props.options &&
+          props.options.map((item, index) => (
+            <option value={item.value} key={index}>
+              {item.placeholder}
+            </option>
+          ))}
       </select>
       <span className="input-animated-bar bg-primary"></span>
       {props.label && (

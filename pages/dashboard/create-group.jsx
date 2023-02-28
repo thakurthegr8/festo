@@ -1,4 +1,4 @@
-import CreateGroup from "@/src/pages/Dashboard/Events/CreateGroup";
+import CreateGroup from "@/src/pages/Dashboard/Groups/CreateGroup";
 import React from "react";
 
 const CreateGroupPage = () => {

@@ -5,7 +5,11 @@ const handler = db(async (req, res) => {
   if (req.method != "GET") return res.status(400).json("method not allowed");
   try {
     console.log(req.query);
-    const getEvents = await Event.findById(req.query.id);
+    const getEvents = await Event.findById(req.query.id).populate([
+      "location",
+      "group_ref",
+      "type"
+    ]);
     if (getEvents) {
       return res.status(200).json(getEvents);
     }

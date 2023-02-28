@@ -1,15 +1,12 @@
 import db from "@/src/services/db";
-import Event from "@/src/services/db/models/Event";
+import Location from "@/src/services/db/models/Location";
 
 const handler = db(async (req, res) => {
   if (req.method != "GET") return res.status(400).json("method not allowed");
   try {
-    const getEvents = await Event.find().populate("group_ref", {
-      name: 1,
-      _id: 1,
-    });
-    if (getEvents) {
-      return res.status(200).json(getEvents);
+    const getLocations = await Location.find();
+    if (getLocations) {
+      return res.status(200).json(getLocations);
     }
   } catch (error) {
     console.log(error);

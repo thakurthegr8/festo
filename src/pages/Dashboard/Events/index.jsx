@@ -7,6 +7,7 @@ import Row from "@/src/components/Layout/Row";
 import axios from "axios";
 import Dashboard from "..";
 import Link from "next/link";
+import moment from "moment";
 
 const tableCols = [
   {
@@ -22,10 +23,25 @@ const tableCols = [
     ),
     target: "_id",
   },
-  { key: "date", placeholder: "Date" },
-  { key: "time", placeholder: "Time" },
-  { key: "location", placeholder: "Location" },
-  { key: "group_ref", placeholder: "Created For" },
+  {
+    key: "date",
+    placeholder: "Date",
+    render: (text, obj, target) => <>{moment(text).format("LL")}</>,
+  },
+  {
+    key: "time",
+    placeholder: "Time",
+    render: (text, obj, target) => {
+      const seconds = text.split(":")[1];
+      const minutes = text.split(":")[0];
+      const momentInTime = moment()
+        .add(seconds, "seconds")
+        .add(minutes, "minutes")
+        .format("LT");
+
+      return <>{momentInTime.toString()}</>;
+    },
+  },
 ];
 
 const EventsDashboard = () => {

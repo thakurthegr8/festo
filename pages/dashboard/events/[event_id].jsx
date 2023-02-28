@@ -34,7 +34,7 @@ const DashboardEventPage = (props) => {
               height={200}
             />
             <IconLabel
-              label={props.event.type}
+              label={props.event.type.name}
               Icon={<ArrowIcon className="w-8 h-8 rotate-45 text-primary" />}
             />
           </Col>
@@ -52,13 +52,13 @@ const DashboardEventPage = (props) => {
           </Col>
           <Col>
             <IconLabel
-              label={props.event.location}
+              label={props.event.location.name}
               Icon={<MapPinIcon className="w-6 h-6 text-primary" />}
             />
           </Col>
           <Col>
             <IconLabel
-              label={props.event.group_ref}
+              label={props.event.group_ref.name}
               Icon={<UserGroupIcon className="w-6 h-6 text-primary" />}
             />
           </Col>

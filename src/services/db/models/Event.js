@@ -15,7 +15,8 @@ const EventSchema = new Schema(
       required: true,
     },
     location: {
-      type: Schema.Types.String,
+      type: Schema.Types.ObjectId,
+      ref: "FestoLocation",
       required: true,
     },
     media_url: {
@@ -23,13 +24,13 @@ const EventSchema = new Schema(
       required: true,
     },
     type: {
-        type: Schema.Types.Mixed,
-        // ref: "Group_Category",
-        required: true,
-      },
+      type: Schema.Types.ObjectId,
+      ref: "FestoCategory",
+      required: true,
+    },
     group_ref: {
-      type: Schema.Types.Mixed,
-    //   ref: "Group",
+      type: Schema.Types.ObjectId,
+      ref: "FestoGroup",
       required: true,
     },
   },

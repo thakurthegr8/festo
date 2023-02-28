@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
 import Grid from "@/src/components/Layout/Grid";
 import Navbar from "@/src/sections/Navbar";
 import Col from "@/src/components/Layout/Col";
@@ -7,31 +8,30 @@ import Typography from "@/src/components/General/Typography";
 import Form from "@/src/components/DataEntry/Form";
 import Button from "@/src/components/General/Button";
 import Row from "@/src/components/Layout/Row";
-import PlusIcon from "@heroicons/react/20/solid/PlusIcon";
 
-const formFields = [
-  { label: "Name", Input: Form.Text, name: "name" },
-  {
-    label: "Type",
-    Input: Form.Select,
-    name: "type",
-    options: [{ value: "ABC 1", placeholder: "abc1" }],
-  },
-];
+const formFields = [{ label: "Name", Input: Form.Text, name: "name" }];
 
-const CreateGroup = () => {
-  const onSubmit = (formData) => {
-    console.log(formData);
+const CreateLocation = () => {
+  const onSubmit = async (formData) => {
+    try {
+      formData = { ...formData, name: formData.name.toLowerCase() };
+      const req = await axios.post("/api/locations/create", formData);
+      const res = await req.data;
+      if (res) alert("success");
+      console.log(res);
+    } catch (error) {
+      alert("failed");
+      console.log(error);
+    }
   };
-
   return (
     <Col styles="gap-4">
       <Container styles="max-w-5xl">
         <Navbar />
-        <Grid styles="grid-cols-1 md:grid-cols-2 gap-4"> 
+        <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
           <Col>
             <Typography variant="text-title font-black">
-              Create Group
+              Create Location
             </Typography>
             <Form styles="space-y-4" onSubmit={onSubmit}>
               {formFields.map(({ Input, ...props }, index) => (
@@ -48,4 +48,4 @@ const CreateGroup = () => {
   );
 };
 
-export default CreateGroup;
+export default CreateLocation;
