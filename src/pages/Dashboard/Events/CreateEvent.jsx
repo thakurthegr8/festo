@@ -34,29 +34,35 @@ const formFields = [
 const CreateEvent = () => {
   const fileUploadRef = useRef(null);
   const [imageBlob, setImageBlob] = useState(null);
+
+  const uploadImage = async () => {
+    const form = new FormData();
+    form.append("file", imageBlob);
+    form.append("upload_preset", process.env.NEXT_PUBLIC_STORAGE_PRESET);
+    const uploadReq = await axios.post(
+      process.env.NEXT_PUBLIC_STORAGE_URL,
+      form,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+    const uploadRes = await uploadReq.data;
+    return uploadRes;
+  };
+
   const onSubmit = async (formData) => {
     if (imageBlob == null) return;
-
     try {
+      const { url } = await uploadImage();
+      formData = { ...formData, media_url: url };
       const req = await axios.post("/api/events/create", formData);
       const res = await req.data;
+      if (res) alert("success");
       console.log(res);
-      if (res) {
-        const imageData = new FormData();
-        imageData.append("event-poster", imageBlob);
-        const uploadPoster = axios.post(
-          `/api/events/upload-poster?id=${res._id}`,
-          imageData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        const uploadPosterRes = await uploadPoster.data;
-        console.log(uploadPosterRes);
-      }
     } catch (error) {
+      alert("failed");
       console.log(error);
     }
   };
@@ -82,12 +88,20 @@ const CreateEvent = () => {
                 ref={fileUploadRef}
                 onChange={(e) => setImageBlob(e.target.files[0])}
               />
+
               <Row>
                 <Button>Submit</Button>
               </Row>
             </Form>
           </Col>
           <Col styles="bg-gray-300 justify-center items-center gap-4">
+            {imageBlob && (
+              <Image
+                src={URL.createObjectURL(imageBlob)}
+                width={200}
+                height={200}
+              />
+            )}
             <Col styles="justify-center items-center bg-white rounded-full p-4 shadow-md">
               <Button
                 variant="btn-icon"
@@ -96,7 +110,6 @@ const CreateEvent = () => {
                 <PlusIcon className="w-6 h-6" />
               </Button>
             </Col>
-            {imageBlob && <Image src="" width={0} height={0} />}
             <Typography>Add Poster...</Typography>
           </Col>
         </Grid>

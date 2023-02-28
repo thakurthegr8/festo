@@ -12,42 +12,53 @@ import UserGroupIcon from "@heroicons/react/24/outline/UserGroupIcon";
 import UserPlusIcon from "@heroicons/react/24/outline/UserPlusIcon";
 import Row from "@/src/components/Layout/Row";
 import Button from "@/src/components/General/Button";
+import withSession from "@/src/middlewares/withSession";
+import axios from "axios";
+import Image from "next/image";
 
-const DashboardEventPage = () => {
+const loader = ({src}) => src;
+
+const DashboardEventPage = (props) => {
   return (
     <Dashboard>
       <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
         <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
           <Typography variant="text-title font-black col-span-2">
-            Youthopia 2023
+            {props.event.name}
           </Typography>
           <Col styles="col-span-2">
+            <Image
+              loader={loader}
+              src={props.event.media_url}
+              width={200}
+              height={200}
+            />
             <IconLabel
-              label="General Event"
+              label={props.event.type}
               Icon={<ArrowIcon className="w-8 h-8 rotate-45 text-primary" />}
             />
           </Col>
           <Col>
             <IconLabel
-              label="27 December 2023"
+              label={props.event.date}
               Icon={<CalendarIcon className="w-6 h-6 text-primary" />}
             />
           </Col>
           <Col>
             <IconLabel
-              label="9:00 PM"
+              label={props.event.time}
               Icon={<ClockIcon className="w-6 h-6 text-primary" />}
             />
           </Col>
           <Col>
             <IconLabel
-              label="Main Parking Area"
+              label={props.event.location}
               Icon={<MapPinIcon className="w-6 h-6 text-primary" />}
             />
           </Col>
           <Col>
             <IconLabel
-              label="Group ABC"
+              label={props.event.group_ref}
               Icon={<UserGroupIcon className="w-6 h-6 text-primary" />}
             />
           </Col>
@@ -58,7 +69,9 @@ const DashboardEventPage = () => {
             />
           </Col>
           <Row styles="col-span-2">
-            <Button variant="btn-primary btn-sm bg-red-500">Delete event</Button>
+            <Button variant="btn-primary btn-sm bg-red-500">
+              Delete event
+            </Button>
           </Row>
         </Grid>
       </Grid>
@@ -67,3 +80,20 @@ const DashboardEventPage = () => {
 };
 
 export default DashboardEventPage;
+
+export const getServerSideProps = withSession(async (ctx) => {
+  const { url } = ctx.req;
+  console.log(ctx.query);
+  try {
+    const event = await axios.get(`${url}/api/events/${ctx.query.event_id}`);
+    const eventData = await event.data;
+    if (Object.keys(eventData).length == 0) {
+      return { notFound: true };
+    }
+    console.log(eventData);
+    return { props: { event: eventData } };
+  } catch (error) {
+    console.log(error);
+    return { notFound: true };
+  }
+});
