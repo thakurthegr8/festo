@@ -6,3 +6,5 @@ const DashboardGroupsPage = () => {
 };
 
 export default DashboardGroupsPage;
+
+DashboardGroupsPage.auth = true;

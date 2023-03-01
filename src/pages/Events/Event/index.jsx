@@ -5,13 +5,13 @@ import React from "react";
 import EventDetails from "./EventDetails";
 import SimilarEvents from "./SimilarEvents";
 
-const Event = () => {
+const Event = (props) => {
   return (
     <Col>
       <Container styles="max-w-5xl">
         <Col styles="gap-8">
           <Navbar />
-          <EventDetails />
+          <EventDetails event={props.event} />
           <SimilarEvents />
         </Col>
       </Container>

@@ -7,3 +7,4 @@ const DashboardEventsPage = () => {
 
 export default DashboardEventsPage;
 
+DashboardEventsPage.auth = true;

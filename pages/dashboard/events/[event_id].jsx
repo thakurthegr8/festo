@@ -81,6 +81,8 @@ const DashboardEventPage = (props) => {
 
 export default DashboardEventPage;
 
+DashboardEventPage.auth = true;
+
 export const getServerSideProps = withSession(async (ctx) => {
   const { url } = ctx.req;
   console.log(ctx.query);

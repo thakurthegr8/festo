@@ -6,3 +6,5 @@ const CreateCategoryPage = () => {
 };
 
 export default CreateCategoryPage;
+
+CreateCategoryPage.auth = true;

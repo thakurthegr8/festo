@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import AuthContext from "@/src/contexts/Auth";
+import Loader from "@/src/elements/Loader";
+import Col from "@/src/components/Layout/Col";
 
 const state = { user: null, loggedIn: false };
 
@@ -18,8 +20,13 @@ const AuthProvider = (props) => {
     if (status === "authenticated")
       setAuthState({ user: session, loggedIn: true });
   }, [status]);
-  
-  if (status == "loading") return "loading";
+
+  if (status == "loading")
+    return (
+      <Col styles="fixed inset-0 flex justify-center items-center">
+        <Loader />
+      </Col>
+    );
 
   return (
     <AuthContext.Provider value={authState}>

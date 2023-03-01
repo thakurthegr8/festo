@@ -2,17 +2,18 @@ import React, { Fragment, useContext } from "react";
 import { Menu } from "@headlessui/react";
 import AuthContext from "@/src/contexts/Auth";
 import Col from "@/src/components/Layout/Col";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Row from "@/src/components/Layout/Row";
 import Avatar from "@/src/components/General/Avatar";
 import Typography from "@/src/components/General/Typography";
 
 const AccountAvatar = () => {
   const ctx = useContext(AuthContext);
+  const session = useSession();
   const initial = ctx?.user?.user?.name
     .split(" ")
     .reduce((prev, curr) => prev + curr[0], "");
-  console.log(ctx);
+  console.log(session);
   return (
     <>
       <Menu className="relative" as="div">

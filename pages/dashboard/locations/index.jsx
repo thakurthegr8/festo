@@ -6,3 +6,5 @@ const DashboardLocationsPage = () => {
 };
 
 export default DashboardLocationsPage;
+
+DashboardLocationsPage.auth = true;

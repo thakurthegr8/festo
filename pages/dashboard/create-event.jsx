@@ -6,3 +6,5 @@ const CreateEventPage = () => {
 };
 
 export default CreateEventPage;
+
+CreateEventPage.auth = true;

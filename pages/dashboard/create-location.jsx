@@ -6,3 +6,5 @@ const CreateLocationPage = () => {
 };
 
 export default CreateLocationPage;
+
+CreateLocationPage.auth=true;

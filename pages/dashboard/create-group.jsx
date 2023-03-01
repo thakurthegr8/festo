@@ -6,3 +6,5 @@ const CreateGroupPage = () => {
 };
 
 export default CreateGroupPage;
+
+CreateGroupPage.auth = true;

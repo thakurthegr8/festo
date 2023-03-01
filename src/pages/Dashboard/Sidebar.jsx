@@ -24,7 +24,7 @@ const SidebarLink = (props) => {
   return (
     <Link href={link}>
       <Row
-        styles={`items-center gap-2 ${
+        styles={`items-center gap-2 hover:bg-gray-200 py-2 px-1 active:bg-gray-300 rounded-md transition ${
           router.pathname === link ? "text-primary" : ""
         }`}
       >
@@ -37,9 +37,9 @@ const SidebarLink = (props) => {
 
 const Sidebar = () => {
   return (
-    <Col styles="bg-gray-200 p-4 gap-4">
+    <Col styles="bg-gray-100 p-4 gap-4 border-r border-gray-300">
       <Image src="/brand/Festo.svg" width={74} height={39} />
-      <Col styles="gap-4">
+      <Col styles="gap-2">
         {sidebarLinks.map((item, index) => (
           <SidebarLink key={index} {...item} />
         ))}

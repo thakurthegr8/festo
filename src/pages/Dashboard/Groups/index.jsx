@@ -50,9 +50,11 @@ const GroupsDashboard = () => {
             <Button>Create group</Button>
           </Link>
         </Row>
-        <Card>
-          {groups.length != 0 && <Table cols={tableCols} dataset={groups} />}
-        </Card>
+        <Col>
+          <Card>
+            {groups.length != 0 && <Table cols={tableCols} dataset={groups} />}
+          </Card>
+        </Col>
       </Col>
     </Dashboard>
   );

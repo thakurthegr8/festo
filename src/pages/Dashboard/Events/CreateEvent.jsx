@@ -102,7 +102,7 @@ const CreateEvent = () => {
                 type="file"
                 className="hidden"
                 name="event_poster"
-                accept="image/png, image/jpeg"
+                accept="image/*"
                 ref={fileUploadRef}
                 onChange={(e) => setImageBlob(e.target.files[0])}
               />

@@ -6,3 +6,5 @@ const DashboardCategoriesPage = () => {
 };
 
 export default DashboardCategoriesPage;
+
+DashboardCategoriesPage.auth = true;

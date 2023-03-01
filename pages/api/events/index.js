@@ -7,6 +7,9 @@ const handler = db(async (req, res) => {
     const getEvents = await Event.find().populate("group_ref", {
       name: 1,
       _id: 1,
+    }).populate("type", {
+      name: 1,
+      _id: 1,
     });
     if (getEvents) {
       return res.status(200).json(getEvents);
