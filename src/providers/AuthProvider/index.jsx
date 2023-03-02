@@ -17,11 +17,13 @@ const AuthProvider = (props) => {
     },
   });
   useEffect(() => {
-    if (status === "authenticated")
-      setAuthState({ user: session, loggedIn: true });
+    if (status === "authenticated") {
+      const user = session.user;
+      setAuthState({ user, loggedIn: true });
+    }
   }, [status]);
 
-  if (status == "loading")
+  if (status == "loading" || !authState.user)
     return (
       <Col styles="fixed inset-0 flex justify-center items-center">
         <Loader />

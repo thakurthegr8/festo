@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Grid from "@/src/components/Layout/Grid";
 import Navbar from "@/src/sections/Navbar";
 import Col from "@/src/components/Layout/Col";
@@ -9,30 +9,37 @@ import Button from "@/src/components/General/Button";
 import Row from "@/src/components/Layout/Row";
 import Link from "next/link";
 import axios from "axios";
+import AuthContext from "@/src/contexts/Auth";
+import { toast } from "react-toastify";
+import useCategories from "@/src/hooks/useCategories";
 
 const formFields = [
   { label: "Name", Input: Form.Text, name: "name" },
-  {
-    label: "Type",
-    Input: Form.Select,
-    name: "category",
-    options: [{ value: "ABC 1", placeholder: "abc1" }],
-  },
 ];
 
 const CreateGroup = () => {
+  const [loading, setLoading] = useState(false);
+  const categories = useCategories().map((item) => ({
+    placeholder: item.name,
+    value: item._id,
+  }));
+  const ctx = useContext(AuthContext);
+  const userId = ctx.user.email;
   const onSubmit = async (formData) => {
     try {
-      formData = { ...formData, created_by: "rt040371@gmail.com" };
-      const createGroup = await axios.post("/api/groups/create", formData);
-      const createGroupRes = await createGroup.data;
-      if (createGroupRes) {
-        console.log(createGroupRes);
-        alert("success");
+      formData = { ...formData, created_by: userId };
+      setLoading(true);
+      const req = await axios.post("/api/groups/create", formData);
+      const res = await req.data;
+      if (res) {
+        console.log(res);
+        toast("success", { type: "success" });
       }
     } catch (error) {
       console.log(error);
-      alert("failed");
+      toast("Error", { type: "error" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -49,8 +56,9 @@ const CreateGroup = () => {
               {formFields.map(({ Input, ...props }, index) => (
                 <Input {...props} key={index} />
               ))}
+              <Form.Select label="Type" name="category" options={categories} />
               <Row>
-                <Button>Submit</Button>
+                <Button loading={loading}>Submit</Button>
               </Row>
             </Form>
           </Col>

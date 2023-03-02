@@ -7,7 +7,7 @@ const EventSchema = new Schema(
       required: true,
     },
     date: {
-      type: Schema.Types.Mixed,
+      type: Schema.Types.Date,
       required: true,
     },
     time: {

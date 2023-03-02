@@ -8,11 +8,10 @@ const handler = db(async (req, res) => {
     const getEvents = await Event.findById(req.query.id).populate([
       "location",
       "group_ref",
-      "type"
+      "type",
     ]);
-    if (getEvents) {
-      return res.status(200).json(getEvents);
-    }
+
+    return res.status(200).json(getEvents);
   } catch (error) {
     console.log(error);
     return res.status(400).json(error);

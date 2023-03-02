@@ -15,6 +15,7 @@ import Button from "@/src/components/General/Button";
 import withSession from "@/src/middlewares/withSession";
 import axios from "axios";
 import Image from "next/image";
+import moment from "moment";
 
 const loader = ({src}) => src;
 
@@ -40,7 +41,7 @@ const DashboardEventPage = (props) => {
           </Col>
           <Col>
             <IconLabel
-              label={props.event.date}
+              label={moment(props.event.date).format("LL")}
               Icon={<CalendarIcon className="w-6 h-6 text-primary" />}
             />
           </Col>

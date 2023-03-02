@@ -14,7 +14,7 @@ body {
 
 /* buttons */
 .btn {
-  @apply rounded-2xl font-semibold  py-2 px-3 flex justify-center items-center active:scale-95 transition-all tracking-wide;
+  @apply rounded-2xl font-semibold disabled:bg-gray-200  py-2 px-3 flex justify-center items-center active:scale-95 transition-all tracking-wide;
 }
 
 .btn-sm {

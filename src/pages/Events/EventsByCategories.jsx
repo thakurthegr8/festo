@@ -21,18 +21,20 @@ const EventsByCategories = (props) => {
         {props.events &&
           props.events.map((item, index) => (
             <Link href={`/events/${item._id}`} key={index}>
-              <Col styles="h-72 w-52 rounded-md overflow-hidden">
-                  <Image
-                    loader={loader}
-                    src={item.media_url}
-                    height={750}
-                    width={450}
-                    className="rounded-md aspect-2/3 h-[calc(100%-40px)]"
-                    style={{ objectFit: "cover" }}
-                    alt={item.name}
-                    loading="lazy"
-                  />
-                <Typography variant="font-bold flex-1">{item.name}</Typography>
+              <Col styles="h-72 w-52 rounded-md">
+                <Image
+                  loader={loader}
+                  src={item.media_url}
+                  height={750}
+                  width={450}
+                  className="rounded-md aspect-2/3 h-[calc(100%-40px)]"
+                  style={{ objectFit: "cover" }}
+                  alt={item.name}
+                  loading="lazy"
+                />
+                <Typography variant="font-bold capitalize">
+                  {item.name.length > 22 ? `${item.name.substring(0,22)}...` : item.name}
+                </Typography>
               </Col>
             </Link>
           ))}

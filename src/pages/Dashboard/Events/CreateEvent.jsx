@@ -14,6 +14,8 @@ import Image from "next/image";
 import useGroups from "@/src/hooks/useGroups";
 import useLocations from "@/src/hooks/useLocations";
 import useCategories from "@/src/hooks/useCategories";
+import moment from "moment";
+import { toast } from "react-toastify";
 
 const formFields = [
   { label: "Name", Input: Form.Text, name: "name" },
@@ -22,9 +24,20 @@ const formFields = [
   // { label: "Group Reference", Input: Form.Text, name: "group_ref" },
 ];
 
+const validateFormData = (formData) => {
+  formData.name = formData.name.toLowerCase();
+  if (moment(formData.date).diff(new Date()) < 0)
+    throw new Error("please choose future date");
+
+  formData.date = new Date(formData.date).toISOString();
+
+  return formData;
+};
+
 const CreateEvent = () => {
   const fileUploadRef = useRef(null);
   const [imageBlob, setImageBlob] = useState(null);
+  const [loading, setLoading] = useState(false);
   const groups = useGroups().map((item) => ({
     placeholder: item.name,
     value: item._id,
@@ -39,6 +52,7 @@ const CreateEvent = () => {
   }));
 
   const uploadImage = async () => {
+    if (imageBlob === null) throw new Error("please select image");
     const form = new FormData();
     form.append("file", imageBlob);
     form.append("upload_preset", process.env.NEXT_PUBLIC_STORAGE_PRESET);
@@ -56,17 +70,24 @@ const CreateEvent = () => {
   };
 
   const onSubmit = async (formData) => {
-    if (imageBlob == null) return;
     try {
+      formData = validateFormData(formData);
       const { url } = await uploadImage();
       formData = { ...formData, media_url: url };
+      setLoading(true);
       const req = await axios.post("/api/events/create", formData);
       const res = await req.data;
-      if (res) alert("success");
+
+      if (res) {
+        toast("success",{type:"success"});
+      }
       console.log(res);
     } catch (error) {
-      alert("failed");
+      if (!error instanceof Error) return toast("Error", { type: "error" });
+      toast(error.message, { type: "warning" });
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -88,11 +109,7 @@ const CreateEvent = () => {
                 label="Location"
                 options={locations}
               />
-              <Form.Select
-                name="type"
-                label="Category"
-                options={categories}
-              />
+              <Form.Select name="type" label="Category" options={categories} />
               <Form.Select
                 name="group_ref"
                 label="Group Reference"
@@ -107,7 +124,7 @@ const CreateEvent = () => {
                 onChange={(e) => setImageBlob(e.target.files[0])}
               />
               <Row>
-                <Button>Submit</Button>
+                <Button loading={loading}>Submit</Button>
               </Row>
             </Form>
           </Col>

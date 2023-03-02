@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Grid from "@/src/components/Layout/Grid";
 import Navbar from "@/src/sections/Navbar";
@@ -8,20 +8,27 @@ import Typography from "@/src/components/General/Typography";
 import Form from "@/src/components/DataEntry/Form";
 import Button from "@/src/components/General/Button";
 import Row from "@/src/components/Layout/Row";
+import { toast } from "react-toastify";
 
 const formFields = [{ label: "Name", Input: Form.Text, name: "name" }];
 
 const CreateCategory = () => {
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (formData) => {
     try {
       formData = { ...formData, name: formData.name.toLowerCase() };
+      setLoading(true);
       const req = await axios.post("/api/categories/create", formData);
       const res = await req.data;
-      if (res) alert("success");
+      if (res) toast("success", { type: "success" });
       console.log(res);
     } catch (error) {
-      alert("failed");
       console.log(error);
+      toast("error", { type: "error" });
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   return (
@@ -38,7 +45,7 @@ const CreateCategory = () => {
                 <Input {...props} key={index} />
               ))}
               <Row>
-                <Button>Submit</Button>
+                <Button loading={loading}>Submit</Button>
               </Row>
             </Form>
           </Col>

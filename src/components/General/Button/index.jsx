@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Loading = () => (
-  <span className="w-6 h-6 animate-spin border-transparent border-t-white  border rounded-full block"></span>
+  <span className="w-6 h-6 animate-spin border-transparent border-t-primary  border rounded-full block"></span>
 );
 
 const Button = (props) => {
@@ -12,6 +12,7 @@ const Button = (props) => {
       className={`${props.size} ${props.variant}`}
       onClick={onClick}
       type={props.type}
+      disabled={props.loading}
     >
       {props.loading ? <Loading /> : children}
     </button>

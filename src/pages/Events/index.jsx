@@ -2,10 +2,8 @@ import React from "react";
 import Col from "@/src/components/Layout/Col";
 import Container from "@/src/components/Layout/Container";
 import Navbar from "@/src/sections/Navbar";
-import TrendingEvents from "./TrendingEvents";
 import EventsByCategories from "./EventsByCategories";
 import useEvents from "@/src/hooks/useEvents";
-import Link from "next/link";
 
 const rearrange = (events) => {
   if (!events) return [];
@@ -28,7 +26,7 @@ const Events = () => {
       <Container styles="max-w-5xl">
         <Col styles="gap-8 pb-8">
           <Navbar />
-          <TrendingEvents />
+          {/* <TrendingEvents /> */}
           {eventsByCategories.map((item) => (
             <EventsByCategories title={item.title} events={item.events} />
           ))}
