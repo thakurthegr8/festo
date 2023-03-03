@@ -1,5 +1,6 @@
 import Table from "@/src/components/DataDisplay/Table";
 import Button from "@/src/components/General/Button";
+import Typography from "@/src/components/General/Typography";
 import Card from "@/src/components/Layout/Card";
 import Col from "@/src/components/Layout/Col";
 import Row from "@/src/components/Layout/Row";
@@ -44,7 +45,8 @@ const GroupsDashboard = () => {
 
   return (
     <Dashboard>
-      <Col className="gap-4">
+      <Col styles="gap-4">
+      <Typography variant="text-title font-black">Groups</Typography>
         <Row>
           <Link href="/dashboard/create-group">
             <Button>Create group</Button>

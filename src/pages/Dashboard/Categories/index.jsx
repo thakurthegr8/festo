@@ -9,6 +9,7 @@ import Dashboard from "..";
 import Link from "next/link";
 import useCategories from "@/src/hooks/useCategories";
 import moment from "moment";
+import Typography from "@/src/components/General/Typography";
 
 const tableCols = [
   {
@@ -18,12 +19,12 @@ const tableCols = [
   {
     key: "createdAt",
     placeholder: "Created At",
-    render: (text, obj, target) => <>{moment(text).format('LLL')}</>,
+    render: (text, obj, target) => <>{moment(text).format("LLL")}</>,
   },
   {
     key: "updatedAt",
     placeholder: "Updated At",
-    render: (text, obj, target) => <>{moment(text).format('LLL')}</>,
+    render: (text, obj, target) => <>{moment(text).format("LLL")}</>,
   },
 ];
 
@@ -32,6 +33,7 @@ const CategoriesDashboard = () => {
   return (
     <Dashboard>
       <Col styles="gap-4">
+        <Typography variant="text-title font-black">Category</Typography>
         <Row>
           <Link href="/dashboard/create-category">
             <Button>Create Category</Button>

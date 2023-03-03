@@ -8,6 +8,7 @@ import axios from "axios";
 import Dashboard from "..";
 import Link from "next/link";
 import moment from "moment";
+import Typography from "@/src/components/General/Typography";
 
 const tableCols = [
   {
@@ -62,6 +63,7 @@ const EventsDashboard = () => {
   return (
     <Dashboard>
       <Col styles="gap-4">
+      <Typography variant="text-title font-black">Events</Typography>
         <Row>
           <Link href="/dashboard/create-event">
             <Button>Create event</Button>

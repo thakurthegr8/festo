@@ -3,7 +3,7 @@ import Typography from "../General/Typography";
 import Row from "../Layout/Row";
 
 const IconLabel = (props) => {
-  const { Icon, label } = props;
+  const { Icon, label,styles } = props;
   return (
     <Row styles="gap-2 items-center">
       {Icon}

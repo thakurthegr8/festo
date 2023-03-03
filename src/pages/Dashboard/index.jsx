@@ -11,15 +11,15 @@ import Sidebar from "./Sidebar";
 
 const Dashboard = (props) => {
   return (
-    <Grid styles="grid-cols-4 h-screen">
+    <Row styles="h-screen">
       <Sidebar />
-      <Col styles="col-span-3">
-        <Container >
+      <Col styles="flex-1">
+        <Container>
           <Navbar withoutLogo />
           {props.children}
         </Container>
       </Col>
-    </Grid>
+    </Row>
   );
 };
 

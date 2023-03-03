@@ -13,14 +13,13 @@ EventPage.auth = true;
 
 export const getServerSideProps = withSession(async (ctx) => {
   const { url } = ctx.req;
-  console.log(ctx.query);
   try {
     const event = await axios.get(`${url}/api/events/${ctx.query.event_id}`);
     const eventData = await event.data;
     if (Object.keys(eventData).length == 0) {
       return { notFound: true };
     }
-    console.log(eventData);
+    // console.log(eventData);
     return { props: { event: eventData } };
   } catch (error) {
     console.log(error);

@@ -28,9 +28,7 @@ const validateFormData = (formData) => {
   formData.name = formData.name.toLowerCase();
   if (moment(formData.date).diff(new Date()) < 0)
     throw new Error("please choose future date");
-
   formData.date = new Date(formData.date).toISOString();
-
   return formData;
 };
 

@@ -17,13 +17,13 @@ import axios from "axios";
 import Image from "next/image";
 import moment from "moment";
 
-const loader = ({src}) => src;
+const loader = ({ src }) => src;
 
 const DashboardEventPage = (props) => {
   return (
     <Dashboard>
       <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
-        <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
+        <Grid styles="grid-cols-1 md:grid-cols-2 gap-4 capitalize place-content-center">
           <Typography variant="text-title font-black col-span-2">
             {props.event.name}
           </Typography>
@@ -34,6 +34,8 @@ const DashboardEventPage = (props) => {
               width={200}
               height={200}
             />
+          </Col>
+          <Col styles="col-span-2">
             <IconLabel
               label={props.event.type.name}
               Icon={<ArrowIcon className="w-8 h-8 rotate-45 text-primary" />}
