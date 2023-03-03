@@ -10,12 +10,14 @@ import Link from "next/link";
 const Navbar = (props) => {
   return (
     <Row
-      styles={`w-full py-2 ${
+      styles={`w-full py-2 items-center ${
         props.withoutLogo ? "justify-end" : "justify-between"
       }`}
     >
       {!props.withoutLogo && (
-        <Image src="/brand/Festo.svg" width={74} height={39} />
+        <Link href="/events">
+          <Image src="/brand/Festo.svg" width={74} height={39} />
+        </Link>
       )}
       <Row styles="gap-4">
         <Link href="/dashboard/create-event">

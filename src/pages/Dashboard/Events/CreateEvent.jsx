@@ -79,7 +79,7 @@ const CreateEvent = () => {
       const res = await req.data;
 
       if (res) {
-        toast("success",{type:"success"});
+        toast("success", { type: "success" });
       }
       console.log(res);
     } catch (error) {
@@ -107,12 +107,19 @@ const CreateEvent = () => {
               <Form.Select
                 name="location"
                 label="Location"
+                styles="capitalize"
                 options={locations}
               />
-              <Form.Select name="type" label="Category" options={categories} />
+              <Form.Select
+                name="type"
+                label="Category"
+                options={categories}
+                styles="capitalize"
+              />
               <Form.Select
                 name="group_ref"
                 label="Group Reference"
+                styles="capitalize"
                 options={groups}
               />
               <input
@@ -128,7 +135,7 @@ const CreateEvent = () => {
               </Row>
             </Form>
           </Col>
-          <Col styles="bg-gray-300 justify-center items-center gap-4">
+          <Col styles="bg-gray-200 justify-center items-center gap-4 p-2 rounded-md">
             {imageBlob && (
               <Image
                 src={URL.createObjectURL(imageBlob)}
@@ -136,15 +143,14 @@ const CreateEvent = () => {
                 height={200}
               />
             )}
-            <Col styles="justify-center items-center bg-white rounded-full p-4 shadow-md">
-              <Button
-                variant="btn-icon"
-                onClick={() => fileUploadRef.current.click()}
-              >
+            <Col styles="justify-center items-center bg-white rounded-full shadow-md">
+              <Button onClick={() => fileUploadRef.current.click()}>
+                <Typography>
+                  {imageBlob ? "Change Poster" : "Add Poster"}
+                </Typography>
                 <PlusIcon className="w-6 h-6" />
               </Button>
             </Col>
-            <Typography>Add Poster...</Typography>
           </Col>
         </Grid>
       </Container>

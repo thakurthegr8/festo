@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const RightColumn = () => {
   return (
-    <Col styles="bg-general justify-between col-span-2">
+    <Col styles="hidden md:flex bg-general justify-between col-span-2">
       <Typography variant="text-white text-title mt-12 ml-12">
         Let us make your next event unforgettable.
       </Typography>

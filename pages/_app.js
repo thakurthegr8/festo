@@ -18,7 +18,7 @@ export default function App({
       ) : (
         <Component {...pageProps} />
       )}
-      <ToastContainer autoClose={5000} theme="dark" />
+      <ToastContainer autoClose={5000} theme="dark" className="capitalize"/>
     </SessionProvider>
   );
 }

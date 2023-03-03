@@ -22,7 +22,7 @@ const Select = (props) => {
         </option>
         {props.options &&
           props.options.map((item, index) => (
-            <option value={item.value} key={index}>
+            <option value={item.value} key={index} className="capitalize">
               {item.placeholder}
             </option>
           ))}

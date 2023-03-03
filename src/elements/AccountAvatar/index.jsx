@@ -2,14 +2,13 @@ import React, { Fragment, useContext, useEffect } from "react";
 import { Menu } from "@headlessui/react";
 import AuthContext from "@/src/contexts/Auth";
 import Col from "@/src/components/Layout/Col";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Row from "@/src/components/Layout/Row";
 import Avatar from "@/src/components/General/Avatar";
 import Typography from "@/src/components/General/Typography";
 
 const AccountAvatar = () => {
   const ctx = useContext(AuthContext);
-  const session = useSession();
   const name = ctx.user.name;
 
   return (
@@ -27,7 +26,9 @@ const AccountAvatar = () => {
           </Menu.Item>
           <Menu.Item
             as="button"
-            onClick={() => signOut("okta")}
+            onClick={() => {
+              signOut({ callbackUrl: "/" });
+            }}
             className="p-2 w-full text-left"
           >
             Sign Out

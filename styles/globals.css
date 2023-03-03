@@ -66,7 +66,7 @@ body {
 /* Icon */
 
 .btn-icon{
-  @apply  rounded-full text-black bg-transparent p-3 hover:bg-primary/20;
+  @apply  rounded-full text-black bg-transparent p-3 hover:bg-primary/20 active:bg-primary/50;
 }
 
 /* typography */
