@@ -12,14 +12,12 @@ const Button = (props) => {
       className={`${props.size} ${props.variant}`}
       onClick={onClick}
       type={props.type}
-      disabled={props.loading}
+      disabled={props.loading || props.disabled}
     >
       {props.loading ? <Loading /> : children}
     </button>
   );
 };
-
-
 
 export default Button;
 
@@ -37,4 +35,5 @@ Button.propTypes = {
   onClick: PropTypes.func,
   type: PropTypes.string,
   loading: PropTypes.bool,
+  disabled: PropTypes.bool,
 };

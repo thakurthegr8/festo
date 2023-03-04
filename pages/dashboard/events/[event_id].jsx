@@ -88,7 +88,6 @@ DashboardEventPage.auth = true;
 
 export const getServerSideProps = withSession(async (ctx) => {
   const { url } = ctx.req;
-  console.log(ctx.query);
   try {
     const event = await axios.get(`${url}/api/events/${ctx.query.event_id}`);
     const eventData = await event.data;
@@ -96,7 +95,7 @@ export const getServerSideProps = withSession(async (ctx) => {
       return { notFound: true };
     }
     console.log(eventData);
-    return { props: { event: eventData } };
+    return { props: { event: eventData, } };
   } catch (error) {
     console.log(error);
     return { notFound: true };

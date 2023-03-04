@@ -11,7 +11,7 @@ const Event = (props) => {
       <Container styles="max-w-5xl">
         <Col styles="gap-8">
           <Navbar />
-          <EventDetails event={props.event} />
+          <EventDetails event={props.event} ticket={props.ticket} />
           <SimilarEvents />
         </Col>
       </Container>

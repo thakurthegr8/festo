@@ -12,7 +12,9 @@ export default {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60,
   },
-
+  jwt: {
+    secret: process.env.NEXT_PUBLIC_OKTA_CLIENT_SECRET,
+  },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
       return true;

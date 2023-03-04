@@ -19,6 +19,7 @@ const EventDetails = (props) => {
   const ctx = useContext(AuthContext);
   const email = ctx.user.email;
   const [loading, setLoading] = useState(false);
+  const [booked, setBooked] = useState(props.ticket !== null);
   if (!props.event) return <Loader />;
 
   const bookEvent = async () => {
@@ -32,6 +33,7 @@ const EventDetails = (props) => {
       if (res) {
         console.log(res);
         toast("success");
+        setBooked(true);
       }
     } catch (error) {
       console.log(error);
@@ -40,7 +42,7 @@ const EventDetails = (props) => {
       setLoading(false);
     }
   };
-
+  console.log(props);
   return (
     <Col styles="gap-4 md:flex-row">
       <Col styles="w-full md:w-1/3 justify-center items-center h-72 md:h-96 rounded-xl">
@@ -81,8 +83,8 @@ const EventDetails = (props) => {
           </Typography>
         </Row>
         <Row>
-          <Button onClick={bookEvent} loading={loading}>
-            Book Now
+          <Button onClick={bookEvent} loading={loading} disabled={booked}>
+            {booked ? "Booked" : "Book Now"}
           </Button>
         </Row>
       </Col>
