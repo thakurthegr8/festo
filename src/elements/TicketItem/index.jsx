@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Ticket.module.css";
 import Col from "@/src/components/Layout/Col";
 import Row from "@/src/components/Layout/Row";
 import Button from "@/src/components/General/Button";
@@ -17,7 +16,7 @@ const Info = (props) => {
   );
 };
 
-const Ticket = (props) => {
+const TicketItem = (props) => {
   return (
     <Col styles="divide-y divide-dashed shadow-md overflow-hidden rounded-md border">
       {props.children}
@@ -28,13 +27,13 @@ const Ticket = (props) => {
 
 const Footer = () => {
   return (
-    <Row styles="bg-white p-2 justify-end">
-      <Button variant="btn-sm bg-gray-200">View ticket</Button>
+    <Row styles="bg-white p-4 justify-end">
+
     </Row>
   );
 };
 
-Ticket.Header = Header;
-Ticket.Info = Info;
+TicketItem.Header = Header;
+TicketItem.Info = Info;
 
-export default Ticket;
+export default TicketItem;

@@ -12,6 +12,7 @@ import Image from "next/image";
 import axios from "axios";
 import AuthContext from "@/src/contexts/Auth";
 import { toast } from "react-toastify";
+import { timeStringNormalization } from "@/utils/date";
 
 const loader = ({ src }) => src;
 
@@ -61,7 +62,7 @@ const EventDetails = (props) => {
         <Typography variant="text-title font-black capitalize">
           {props.event.name}
         </Typography>
-        <Typography variant="text-primary capitalize">
+        <Typography variant="text-primary uppercase font-bold ">
           {props.event.type.name}
         </Typography>
         <Row styles="gap-8">
@@ -73,7 +74,7 @@ const EventDetails = (props) => {
           </Row>
           <Row styles="gap-2">
             <ClockIcon className="w-6 h-6 text-primary" />
-            <Typography variant="font-bold ">{props.event.time}</Typography>
+            <Typography variant="font-bold uppercase">{timeStringNormalization(props.event.time)}</Typography>
           </Row>
         </Row>
         <Row styles="gap-2">
