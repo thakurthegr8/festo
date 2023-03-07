@@ -1,4 +1,5 @@
 import db from "@/src/services/db";
+import errorMessages from "@/src/services/db/errorMessages";
 import Ticket from "@/src/services/db/models/Ticket";
 
 const handler = db(async (req, res) => {
@@ -9,7 +10,6 @@ const handler = db(async (req, res) => {
     }).populate("ticket_for_event");
     return res.status(200).json(ticket);
   } catch (error) {
-    console.log(error);
     return res.status(400).json({});
   }
 });

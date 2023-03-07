@@ -18,7 +18,12 @@ export default function App({
       ) : (
         <Component {...pageProps} />
       )}
-      <ToastContainer autoClose={5000} theme="dark" className="capitalize"/>
+      <ToastContainer
+        autoClose={5000}
+        className="capitalize rounded-xl"
+        theme="colored"
+        position="bottom-center"
+      />
     </SessionProvider>
   );
 }

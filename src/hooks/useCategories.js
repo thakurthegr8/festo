@@ -12,7 +12,6 @@ const useCategories = () => {
       const res = await req.data;
       setCategories(res);
     } catch (error) {
-      console.log(error);
       setError(error);
       toast("error", { type: "error" });
     } finally {

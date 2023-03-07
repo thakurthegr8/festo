@@ -1,4 +1,5 @@
 import db from "@/src/services/db";
+import errorMessages from "@/src/services/db/errorMessages";
 import Category from "@/src/services/db/models/Category";
 
 const handler = db(async (req, res) => {
@@ -9,8 +10,7 @@ const handler = db(async (req, res) => {
       return res.status(201).json(createCategories);
     }
   } catch (error) {
-    console.log(error);
-    return res.status(400).json(error);
+    return res.status(400).json(errorMessages[error.code]);
   }
 });
 

@@ -6,9 +6,8 @@ import {
   createCategoryText,
   dashboardCategoriesTableCols,
 } from "./data";
+
 import classes from "./Categories.module.css";
-import Table from "@/src/components/DataDisplay/Table";
-import Card from "@/src/components/Layout/Card";
 import Col from "@/src/components/Layout/Col";
 import Row from "@/src/components/Layout/Row";
 import Dashboard from "..";
@@ -17,7 +16,7 @@ import Typography from "@/src/components/General/Typography";
 import DashboardTable from "@/src/elements/DashboardTable";
 
 const CategoriesDashboard = () => {
-  const categories = useCategories();
+  const { categories, loading, error } = useCategories();
   return (
     <Dashboard>
       <Col styles={classes.columns}>
@@ -29,7 +28,12 @@ const CategoriesDashboard = () => {
             {createCategoryText}
           </Link>
         </Row>
-        <DashboardTable cols={dashboardCategoriesTableCols} {...categories} />
+        <DashboardTable
+          cols={dashboardCategoriesTableCols}
+          data={categories}
+          loading={loading}
+          error={error}
+        />
       </Col>
     </Dashboard>
   );

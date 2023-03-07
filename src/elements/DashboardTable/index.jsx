@@ -17,8 +17,8 @@ const DashboardTable = (props) => {
   return (
     <Col>
       <Card>
-        {props?.categories.length != 0 && (
-          <Table cols={props?.cols} dataset={props?.categories} />
+        {props?.data.length != 0 && (
+          <Table cols={props?.cols} dataset={props?.data} />
         )}
       </Card>
     </Col>

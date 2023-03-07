@@ -16,61 +16,23 @@ import useLocations from "@/src/hooks/useLocations";
 import useCategories from "@/src/hooks/useCategories";
 import moment from "moment";
 import { toast } from "react-toastify";
+import { uploadImage, validateFormData } from "./utils";
+import { createEventFormFields, createEventHeading } from "./data";
 
-const formFields = [
-  { label: "Name", Input: Form.Text, name: "name" },
-  { label: "Date", Input: Form.Date, name: "date" },
-  { label: "Time", Input: Form.Time, name: "time" },
-  // { label: "Group Reference", Input: Form.Text, name: "group_ref" },
-];
 
-const validateFormData = (formData) => {
-  formData.name = formData.name.toLowerCase();
-  if (moment(formData.date).diff(new Date()) < 0)
-    throw new Error("please choose future date");
-  formData.date = new Date(formData.date).toISOString();
-  return formData;
-};
 
 const CreateEvent = () => {
   const fileUploadRef = useRef(null);
   const [imageBlob, setImageBlob] = useState(null);
   const [loading, setLoading] = useState(false);
-  const groups = useGroups().map((item) => ({
-    placeholder: item.name,
-    value: item._id,
-  }));
-  const locations = useLocations().map((item) => ({
-    placeholder: item.name,
-    value: item._id,
-  }));
-  const categories = useCategories().map((item) => ({
-    placeholder: item.name,
-    value: item._id,
-  }));
-
-  const uploadImage = async () => {
-    if (imageBlob === null) throw new Error("please select image");
-    const form = new FormData();
-    form.append("file", imageBlob);
-    form.append("upload_preset", process.env.NEXT_PUBLIC_STORAGE_PRESET);
-    const uploadReq = await axios.post(
-      process.env.NEXT_PUBLIC_STORAGE_URL,
-      form,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-    const uploadRes = await uploadReq.data;
-    return uploadRes;
-  };
+  const { groups } = useGroups();
+  const { locations } = useLocations();
+  const { categories } = useCategories();
 
   const onSubmit = async (formData) => {
     try {
       formData = validateFormData(formData);
-      const { url } = await uploadImage();
+      const { url } = await uploadImage(imageBlob);
       formData = { ...formData, media_url: url };
       setLoading(true);
       const req = await axios.post("/api/events/create", formData);
@@ -96,29 +58,38 @@ const CreateEvent = () => {
         <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
           <Col>
             <Typography variant="text-title font-black">
-              Create Event
+              {createEventHeading}
             </Typography>
             <Form styles="space-y-4" onSubmit={onSubmit}>
-              {formFields.map(({ Input, ...props }, index) => (
+              {createEventFormFields.map(({ Input, ...props }, index) => (
                 <Input {...props} key={index} />
               ))}
               <Form.Select
                 name="location"
                 label="Location"
                 styles="capitalize"
-                options={locations}
+                options={locations.map((item) => ({
+                  placeholder: item.name,
+                  value: item._id,
+                }))}
               />
               <Form.Select
                 name="type"
                 label="Category"
-                options={categories}
+                options={categories.map((item) => ({
+                  placeholder: item.name,
+                  value: item._id,
+                }))}
                 styles="capitalize"
               />
               <Form.Select
                 name="group_ref"
                 label="Group Reference"
                 styles="capitalize"
-                options={groups}
+                options={groups.map((item) => ({
+                  placeholder: item.name,
+                  value: item._id,
+                }))}
               />
               <input
                 type="file"

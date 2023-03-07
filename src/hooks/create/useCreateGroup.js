@@ -1,19 +1,19 @@
+import React, { useContext, useState } from "react";
+import AuthContext from "@/src/contexts/Auth";
 import axios from "axios";
-import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-const api = "/api/categories/create";
-
-const useCreateCategory = () => {
+const useCreateGroup = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const ctx = useContext(AuthContext);
+  const userId = ctx.user.email;
   const onSubmit = async (formData) => {
     try {
-      formData = { ...formData, name: formData.name.toLowerCase() };
+      formData = { ...formData, created_by: userId };
       setLoading(true);
-      const req = await axios.post(api, formData);
+      const req = await axios.post("/api/groups/create", formData);
       const res = await req.data;
       if (res) {
         setData(res);
@@ -21,13 +21,12 @@ const useCreateCategory = () => {
       }
     } catch (error) {
       setError(error);
-      console.log(error);
-      toast(error.response.data, { type: "error" });
+      toast("Error", { type: "error" });
     } finally {
       setLoading(false);
     }
   };
-  return { onSubmit, data, loading, error };
+  return { data, onSubmit, loading, error };
 };
 
-export default useCreateCategory;
+export default useCreateGroup;

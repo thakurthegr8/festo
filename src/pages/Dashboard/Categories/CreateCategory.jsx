@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Categories.module.css";
 import { createCategoryFormFields, createCategoryHeading } from "./data";
 import useCreateCategory from "@/src/hooks/create/useCreateCategory";
@@ -15,9 +15,15 @@ import Dialog from "@/src/components/Dialogs";
 
 const CreateCategory = () => {
   const createCategory = useCreateCategory();
-  const [confirmSubmission, setConfirmSubmission] = useState(true);
+  const [confirmSubmission, setConfirmSubmission] = useState(false);
+  const [formData, setFormData] = useState(null);
   const [open, toggle] = useState(false);
-
+  useEffect(() => {
+    if (confirmSubmission) {
+      createCategory.onSubmit(formData);
+      setConfirmSubmission(false);
+    }
+  }, [confirmSubmission]);
   return (
     <Col styles="gap-4">
       <Container styles={classes.categoriesContainer}>
@@ -31,6 +37,7 @@ const CreateCategory = () => {
               styles="space-y-4"
               onSubmit={(formData) => {
                 toggle(true);
+                setFormData(formData);
               }}
             >
               {createCategoryFormFields.map(({ Input, ...props }, index) => (

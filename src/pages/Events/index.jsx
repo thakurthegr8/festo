@@ -20,7 +20,9 @@ const rearrange = (events) => {
 };
 
 const Events = () => {
-  const eventsByCategories = rearrange(useEvents());
+  const { events } = useEvents();
+  const eventsByCategories = rearrange(events);
+
   return (
     <Col>
       <Container styles="max-w-5xl">
