@@ -1,6 +1,7 @@
 import db from "@/src/services/db";
 import Event from "@/src/services/db/models/Event";
 
+
 const handler = db(async (req, res) => {
   if (req.method != "GET") return res.status(400).json("method not allowed");
   try {

@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import models from "./models";
 
 const db = (handler) => {
   return async (req, res) => {

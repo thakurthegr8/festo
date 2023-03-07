@@ -1,5 +1,4 @@
 import db from "@/src/services/db";
-import Category from "@/src/services/db/models/Category";
 import Location from "@/src/services/db/models/Location";
 
 const handler = db(async (req, res) => {

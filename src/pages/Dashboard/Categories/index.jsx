@@ -1,51 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Link from "next/link";
+import {
+  createCategoryHeading,
+  createCategoryLink,
+  createCategoryText,
+  dashboardCategoriesTableCols,
+} from "./data";
+import classes from "./Categories.module.css";
 import Table from "@/src/components/DataDisplay/Table";
-import Button from "@/src/components/General/Button";
 import Card from "@/src/components/Layout/Card";
 import Col from "@/src/components/Layout/Col";
 import Row from "@/src/components/Layout/Row";
-import axios from "axios";
 import Dashboard from "..";
-import Link from "next/link";
 import useCategories from "@/src/hooks/useCategories";
-import moment from "moment";
 import Typography from "@/src/components/General/Typography";
-
-const tableCols = [
-  {
-    key: "name",
-    placeholder: "Name",
-  },
-  {
-    key: "createdAt",
-    placeholder: "Created At",
-    render: (text, obj, target) => <>{moment(text).format("LLL")}</>,
-  },
-  {
-    key: "updatedAt",
-    placeholder: "Updated At",
-    render: (text, obj, target) => <>{moment(text).format("LLL")}</>,
-  },
-];
+import DashboardTable from "@/src/elements/DashboardTable";
 
 const CategoriesDashboard = () => {
   const categories = useCategories();
   return (
     <Dashboard>
-      <Col styles="gap-4">
-        <Typography variant="text-title font-black">Category</Typography>
+      <Col styles={classes.columns}>
+        <Typography variant="text-title font-black">
+          {createCategoryHeading}
+        </Typography>
         <Row>
-          <Link href="/dashboard/create-category">
-            <Button>Create Category</Button>
+          <Link href={createCategoryLink} className="btn-sm btn-primary">
+            {createCategoryText}
           </Link>
         </Row>
-        <Col>
-          <Card>
-            {categories.length != 0 && (
-              <Table cols={tableCols} dataset={categories} />
-            )}
-          </Card>
-        </Col>
+        <DashboardTable cols={dashboardCategoriesTableCols} {...categories} />
       </Col>
     </Dashboard>
   );

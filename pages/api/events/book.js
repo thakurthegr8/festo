@@ -1,5 +1,4 @@
 import db from "@/src/services/db";
-import Event from "@/src/services/db/models/Event";
 import Ticket from "@/src/services/db/models/Ticket";
 
 const handler = db(async (req, res) => {

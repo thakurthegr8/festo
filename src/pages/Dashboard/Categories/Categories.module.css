@@ -1,0 +1,11 @@
+.columns {
+  @apply gap-4;
+}
+
+.createCategoryFormGridLayout {
+  @apply grid-cols-1 md:grid-cols-2 gap-4;
+}
+
+.categoriesContainer {
+  @apply max-w-5xl;
+}

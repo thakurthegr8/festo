@@ -18,6 +18,6 @@ const GroupSchema = new Schema(
   { timestamps: true }
 );
 
-const Group = mongoose.models.FestoGroup || model("FestoGroup", GroupSchema);
+const Group = mongoose.models?.FestoGroup || model("FestoGroup", GroupSchema);
 
 export default Group;

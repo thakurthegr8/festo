@@ -1,5 +1,8 @@
-import React, { useState } from "react";
 import axios from "axios";
+import React, { useState } from "react";
+import classes from "./Categories.module.css";
+import { createCategoryFormFields, createCategoryHeading } from "./data";
+import useCreateCategory from "@/src/hooks/create/useCreateCategory";
 import Grid from "@/src/components/Layout/Grid";
 import Navbar from "@/src/sections/Navbar";
 import Col from "@/src/components/Layout/Col";
@@ -8,49 +11,45 @@ import Typography from "@/src/components/General/Typography";
 import Form from "@/src/components/DataEntry/Form";
 import Button from "@/src/components/General/Button";
 import Row from "@/src/components/Layout/Row";
-import { toast } from "react-toastify";
-
-const formFields = [{ label: "Name", Input: Form.Text, name: "name" }];
+import Dialog from "@/src/components/Dialogs";
 
 const CreateCategory = () => {
-  const [loading, setLoading] = useState(false);
+  const createCategory = useCreateCategory();
+  const [confirmSubmission, setConfirmSubmission] = useState(true);
+  const [open, toggle] = useState(false);
 
-  const onSubmit = async (formData) => {
-    try {
-      formData = { ...formData, name: formData.name.toLowerCase() };
-      setLoading(true);
-      const req = await axios.post("/api/categories/create", formData);
-      const res = await req.data;
-      if (res) toast("success", { type: "success" });
-      console.log(res);
-    } catch (error) {
-      console.log(error);
-      toast("error", { type: "error" });
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
   return (
     <Col styles="gap-4">
-      <Container styles="max-w-5xl">
+      <Container styles={classes.categoriesContainer}>
         <Navbar />
-        <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
+        <Grid styles={classes.createCategoryFormGridLayout}>
           <Col>
             <Typography variant="text-title font-black">
-              Create Category
+              {createCategoryHeading}
             </Typography>
-            <Form styles="space-y-4" onSubmit={onSubmit}>
-              {formFields.map(({ Input, ...props }, index) => (
+            <Form
+              styles="space-y-4"
+              onSubmit={(formData) => {
+                toggle(true);
+              }}
+            >
+              {createCategoryFormFields.map(({ Input, ...props }, index) => (
                 <Input {...props} key={index} />
               ))}
               <Row>
-                <Button loading={loading}>Submit</Button>
+                <Button loading={createCategory.loading}>Submit</Button>
               </Row>
             </Form>
           </Col>
         </Grid>
       </Container>
+      <Dialog.Confirm
+        open={open}
+        toggle={toggle}
+        confirm={setConfirmSubmission}
+      >
+        <Col styles="bg-white p-4">Are you sure to proceed?</Col>
+      </Dialog.Confirm>
     </Col>
   );
 };
