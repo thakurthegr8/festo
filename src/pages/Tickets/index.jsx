@@ -9,8 +9,9 @@ import moment from "moment";
 import Button from "@/src/components/General/Button";
 import Link from "next/link";
 import { timeStringNormalization } from "@/utils/date";
+import { loader } from "@/utils/image";
 
-const loader = ({ src }) => src;
+
 
 const initialState = { upcoming: [], old: [] };
 const rearrange = (tickets) => {

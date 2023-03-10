@@ -13,8 +13,9 @@ import axios from "axios";
 import AuthContext from "@/src/contexts/Auth";
 import { toast } from "react-toastify";
 import { timeStringNormalization } from "@/utils/date";
+import { loader } from "@/utils/image";
 
-const loader = ({ src }) => src;
+
 
 const EventDetails = (props) => {
   const ctx = useContext(AuthContext);

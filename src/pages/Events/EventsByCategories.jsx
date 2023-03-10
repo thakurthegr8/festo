@@ -4,11 +4,11 @@ import Typography from "@/src/components/General/Typography";
 import Row from "@/src/components/Layout/Row";
 import Link from "next/link";
 import Image from "next/image";
+import { loader } from "@/utils/image";
 
 const DummyLoader = () => {
   return <Col styles="w-52 h-72 bg-gray-400 rounded-md animate-pulse"></Col>;
 };
-const loader = ({ src }) => src;
 
 const EventsByCategories = (props) => {
   console.log(props);

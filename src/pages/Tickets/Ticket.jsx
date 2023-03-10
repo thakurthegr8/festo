@@ -14,8 +14,9 @@ import IconLabel from "@/src/components/DataDisplay/IconLabel";
 import MapPinIcon from "@heroicons/react/24/outline/MapPinIcon";
 import UserGroupIcon from "@heroicons/react/24/outline/UserGroupIcon";
 import Link from "next/link";
+import { loader } from "@/utils/image";
 
-const loader = ({ src }) => src;
+
 
 const Ticket = (props) => {
   const { ticket_for_event: event } = props.ticket;

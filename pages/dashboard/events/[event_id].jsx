@@ -16,8 +16,8 @@ import withSession from "@/src/middlewares/withSession";
 import axios from "axios";
 import Image from "next/image";
 import moment from "moment";
+import { loader } from "@/utils/image";
 
-const loader = ({ src }) => src;
 
 const DashboardEventPage = (props) => {
   return (
