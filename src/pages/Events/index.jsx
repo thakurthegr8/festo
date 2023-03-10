@@ -48,9 +48,11 @@ const EventGallery = () => {
 const Events = () => {
   return (
     <Col>
+      <Container styles="max-w-5xl px-4 md:px-0">
+        <Navbar />
+      </Container>
       <Container styles="max-w-5xl">
         <Col styles="gap-8 pb-8">
-          <Navbar />
           {/* <TrendingEvents /> */}
           <EventGallery />
         </Col>

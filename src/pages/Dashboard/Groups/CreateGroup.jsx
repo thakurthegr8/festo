@@ -36,7 +36,7 @@ const CreateGroup = () => {
   }, [confirmSubmission]);
   return (
     <Col styles="gap-4">
-      <Container styles="max-w-5xl">
+      <Container styles="max-w-5xl px-4 lg:px-0">
         <Navbar />
         <Grid styles="grid-cols-1 md:grid-cols-2 gap-4">
           <Col>

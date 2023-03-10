@@ -10,7 +10,7 @@ import Link from "next/link";
 const Navbar = (props) => {
   return (
     <Row
-      styles={`w-full py-2 items-center ${
+      styles={`w-full py-2 z-10 items-center ${
         props.withoutLogo ? "justify-end" : "justify-between"
       }`}
     >

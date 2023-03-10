@@ -14,10 +14,10 @@ const EventsByCategories = (props) => {
   console.log(props);
   return (
     <Col>
-      <Typography variant="text-subtitle font-bold capitalize">
+      <Typography variant="text-subtitle font-bold capitalize px-4 md:px-0">
         {props.title}
       </Typography>
-      <Row styles="overflow-x-scroll gap-4 scroll-bar-none">
+      <Row styles="overflow-x-scroll gap-4 scroll-bar-none px-4 md:px-0">
         {props.events &&
           props.events.map((item, index) => (
             <Link href={`/events/${item._id}`} key={index}>
