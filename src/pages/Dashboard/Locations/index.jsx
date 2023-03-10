@@ -9,6 +9,7 @@ import Link from "next/link";
 import useLocations from "@/src/hooks/useLocations";
 import moment from "moment";
 import Typography from "@/src/components/General/Typography";
+import DashboardTable from "@/src/elements/DashboardTable";
 
 const tableCols = [
   {
@@ -28,7 +29,7 @@ const tableCols = [
 ];
 
 const LocationsDashboard = () => {
-  const locations = useLocations();
+  const { locations, loading, error } = useLocations();
 
   return (
     <Dashboard>
@@ -39,13 +40,12 @@ const LocationsDashboard = () => {
             <Button>Create location</Button>
           </Link>
         </Row>
-        <Col>
-          <Card>
-            {locations.length != 0 && (
-              <Table cols={tableCols} dataset={locations} />
-            )}
-          </Card>
-        </Col>
+        <DashboardTable
+          error={error}
+          loading={loading}
+          data={locations}
+          cols={tableCols}
+        />
       </Col>
     </Dashboard>
   );

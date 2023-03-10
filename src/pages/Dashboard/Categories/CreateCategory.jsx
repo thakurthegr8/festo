@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import classes from "./Categories.module.css";
 import { createCategoryFormFields, createCategoryHeading } from "./data";
@@ -11,7 +10,7 @@ import Typography from "@/src/components/General/Typography";
 import Form from "@/src/components/DataEntry/Form";
 import Button from "@/src/components/General/Button";
 import Row from "@/src/components/Layout/Row";
-import Dialog from "@/src/components/Dialogs";
+import Confirm from "@/src/components/Dialogs/Confirm";
 
 const CreateCategory = () => {
   const createCategory = useCreateCategory();
@@ -50,13 +49,13 @@ const CreateCategory = () => {
           </Col>
         </Grid>
       </Container>
-      <Dialog.Confirm
+      <Confirm
         open={open}
         toggle={toggle}
         confirm={setConfirmSubmission}
       >
         <Col styles="bg-white p-4">Are you sure to proceed?</Col>
-      </Dialog.Confirm>
+      </Confirm>
     </Col>
   );
 };

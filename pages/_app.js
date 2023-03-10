@@ -20,7 +20,7 @@ export default function App({
       )}
       <ToastContainer
         autoClose={5000}
-        className="capitalize rounded-xl"
+        className="capitalize rounded-xl p-4"
         theme="colored"
         position="bottom-center"
       />

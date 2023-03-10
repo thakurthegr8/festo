@@ -17,7 +17,6 @@ const handler = db(async (req, res) => {
         _id: 1,
       });
     if (getEvents) {
-      console.log(getEvents);
       return res.status(200).json(getEvents);
     }
   } catch (error) {

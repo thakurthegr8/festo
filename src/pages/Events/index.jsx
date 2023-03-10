@@ -4,6 +4,8 @@ import Container from "@/src/components/Layout/Container";
 import Navbar from "@/src/sections/Navbar";
 import EventsByCategories from "./EventsByCategories";
 import useEvents from "@/src/hooks/useEvents";
+import Loader from "@/src/elements/Loader";
+import Row from "@/src/components/Layout/Row";
 
 const rearrange = (events) => {
   if (!events) return [];
@@ -19,19 +21,38 @@ const rearrange = (events) => {
   return arrangedEvents;
 };
 
-const Events = () => {
-  const { events } = useEvents();
+const EventGallery = () => {
+  const { events, loading } = useEvents();
   const eventsByCategories = rearrange(events);
 
+  if (loading)
+    return (
+      <Row styles="w-full items-center justify-center flex-1 h-full pt-36">
+        <Loader />
+      </Row>
+    );
+
+  return (
+    <>
+      {eventsByCategories.map((item, index) => (
+        <EventsByCategories
+          title={item.title}
+          events={item.events}
+          key={index}
+        />
+      ))}
+    </>
+  );
+};
+
+const Events = () => {
   return (
     <Col>
       <Container styles="max-w-5xl">
         <Col styles="gap-8 pb-8">
           <Navbar />
           {/* <TrendingEvents /> */}
-          {eventsByCategories.map((item) => (
-            <EventsByCategories title={item.title} events={item.events} />
-          ))}
+          <EventGallery />
         </Col>
       </Container>
     </Col>

@@ -18,7 +18,9 @@ const DialogWrapper = (props) => {
         leaveTo="translate-y-4 sm:opacity-0 sm:scale-95"
       >
         <HeadlessDialog.Panel>
-          <Col styles="w-full md:w-96 bg-white rounded-xl border shadow-xl  overflow-hidden">{props.children}</Col>
+          <Col styles="w-full md:w-96 bg-white rounded-xl border shadow-xl  overflow-hidden">
+            {props.children}
+          </Col>
         </HeadlessDialog.Panel>
       </Transition.Child>
     </Col>
@@ -38,15 +40,5 @@ const Dialog = (props) => {
   );
 };
 
-Dialog.Alert = (props) => (
-  <Dialog {...props}>
-    <Alert {...props} />
-  </Dialog>
-);
-Dialog.Confirm = (props) => (
-  <Dialog {...props}>
-    <Confirm {...props} />
-  </Dialog>
-);
 
 export default Dialog;

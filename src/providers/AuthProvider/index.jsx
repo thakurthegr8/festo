@@ -19,6 +19,7 @@ const AuthProvider = (props) => {
   useEffect(() => {
     if (status === "authenticated") {
       const user = session.user;
+      console.log(session);
       setAuthState({ user, loggedIn: true });
     }
   }, [status]);

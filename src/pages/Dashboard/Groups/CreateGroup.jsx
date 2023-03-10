@@ -14,6 +14,7 @@ import useCategories from "@/src/hooks/useCategories";
 import { createGroupHeading } from "./data";
 import useCreateGroup from "@/src/hooks/create/useCreateGroup";
 import Dialog from "@/src/components/Dialogs";
+import Confirm from "@/src/components/Dialogs/Confirm";
 
 const formFields = [{ label: "Name", Input: Form.Text, name: "name" }];
 
@@ -60,13 +61,13 @@ const CreateGroup = () => {
           </Col>
         </Grid>
       </Container>
-      <Dialog.Confirm
+      <Confirm
         open={open}
         toggle={toggle}
         confirm={setConfirmSubmission}
       >
         <Col styles="bg-white p-4">Are you sure to proceed?</Col>
-      </Dialog.Confirm>
+      </Confirm>
     </Col>
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 
 const Table = (props) => {
+  console.log(props.dataset);
   return (
     <table className="w-full divide-y table-fixed text-sm">
       <tr className="py-3">
@@ -10,7 +11,7 @@ const Table = (props) => {
           </th>
         ))}
       </tr>
-      {props.dataset &&
+      {props.dataset.length !== 0 &&
         props.dataset.map((item, index) => (
           <tr key={index} className=" capitalize">
             {props.cols.map((col, colIdx) => (
@@ -21,7 +22,6 @@ const Table = (props) => {
               </td>
             ))}
           </tr>
-          // item?.[col.key]
         ))}
     </table>
   );

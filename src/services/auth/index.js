@@ -16,7 +16,8 @@ export default {
     secret: process.env.NEXT_PUBLIC_OKTA_CLIENT_SECRET,
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn(cred) {
+      console.log(cred);
       return true;
     },
     async redirect({ url, baseUrl }) {
@@ -26,9 +27,11 @@ export default {
     async session({ session, user, token }) {
       session.accessToken = token.accessToken;
       session.profile = token.profile;
+      console.log(session);
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
+      console.log(user);
       if (account) {
         token.accessToken = account.access_token;
         token.profile = profile;

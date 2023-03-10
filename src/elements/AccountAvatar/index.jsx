@@ -12,7 +12,7 @@ import Link from "next/link";
 const AccountAvatar = () => {
   const ctx = useContext(AuthContext);
   const name = ctx.user.name;
-
+  console.log(ctx);
   return (
     <>
       <Menu className="relative" as="div">
@@ -26,11 +26,11 @@ const AccountAvatar = () => {
               <Typography variant="text-heading font-bold">{name}</Typography>
             </Row>
           </Menu.Item>
-          <Menu.Item
-            as="div"
-            className="p-2 w-full hover:bg-gray-100 "
-          >
-            <Link href="/tickets" className="gap-2 text-left flex flex-row items-center">
+          <Menu.Item as="div" className="p-2 w-full hover:bg-gray-100 ">
+            <Link
+              href="/tickets"
+              className="gap-2 text-left flex flex-row items-center"
+            >
               <TicketIcon className="w-6 h-6" />
               <Typography variant="text-caption text-sm">Tickets</Typography>
             </Link>
