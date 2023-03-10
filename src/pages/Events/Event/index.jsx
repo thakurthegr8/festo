@@ -8,7 +8,7 @@ import SimilarEvents from "./SimilarEvents";
 const Event = (props) => {
   return (
     <Col>
-      <Container styles="max-w-5xl">
+      <Container styles="max-w-5xl px-4 lg:px-0">
         <Col styles="gap-8">
           <Navbar />
           <EventDetails event={props.event} ticket={props.ticket} />
