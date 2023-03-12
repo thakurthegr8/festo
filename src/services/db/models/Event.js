@@ -19,9 +19,6 @@ const EventSchema = new Schema(
       ref: "FestoLocation",
       required: true,
     },
-    fees: {
-      type: Schema.Types.String,
-    },
     media_url: {
       type: Schema.Types.String,
       required: true,

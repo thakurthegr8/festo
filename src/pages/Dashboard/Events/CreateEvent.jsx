@@ -9,20 +9,22 @@ import Button from "@/src/components/General/Button";
 import Row from "@/src/components/Layout/Row";
 import PlusIcon from "@heroicons/react/20/solid/PlusIcon";
 import axios from "axios";
+import { uploadFile } from "@/src/services/storage";
 import Image from "next/image";
 import useGroups from "@/src/hooks/useGroups";
 import useLocations from "@/src/hooks/useLocations";
 import useCategories from "@/src/hooks/useCategories";
+import moment from "moment";
 import { toast } from "react-toastify";
 import { uploadImage, validateFormData } from "./utils";
 import { createEventFormFields, createEventHeading } from "./data";
-import Switch from "@/src/components/General/Switch";
+
+
 
 const CreateEvent = () => {
   const fileUploadRef = useRef(null);
   const [imageBlob, setImageBlob] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [isPaid, setPaid] = useState(false);
   const { groups } = useGroups();
   const { locations } = useLocations();
   const { categories } = useCategories();
@@ -97,14 +99,6 @@ const CreateEvent = () => {
                 ref={fileUploadRef}
                 onChange={(e) => setImageBlob(e.target.files[0])}
               />
-              <Col styles="gap-2">
-                <Row styles="items-center gap-2">
-                  <Typography variant="text-sm">Enable Paid Event</Typography>
-                  <Switch enabled={isPaid} setEnabled={setPaid} />
-                </Row>
-                {isPaid && <Form.Number label="Fees" name="fees" />}
-              </Col>
-
               <Row>
                 <Button loading={loading}>Submit</Button>
               </Row>
