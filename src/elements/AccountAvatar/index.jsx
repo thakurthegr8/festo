@@ -15,7 +15,7 @@ const AccountAvatar = () => {
   console.log(ctx);
   return (
     <>
-      <Menu className="relative" as="div">
+      <Menu className="relative z-10" as="div">
         <Menu.Button>
           <Avatar name={name} />
         </Menu.Button>
