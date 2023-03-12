@@ -28,7 +28,6 @@ const EventDetails = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [booked, setBooked] = useState(props.ticket !== null);
-  const [paymentSucceeded, setPaymentSucceeded] = useState(false);
   if (!props.event) return <Loader />;
 
   const book = async () => {
@@ -74,9 +73,7 @@ const EventDetails = (props) => {
       book();
     }
   };
-  useEffect(() => {
-    if (paymentSucceeded) book();
-  }, [paymentSucceeded]);
+
   return (
     <Col styles="gap-4 md:flex-row">
       <Col styles="w-full md:w-1/3 justify-center items-center h-72 md:h-96 rounded-xl">
