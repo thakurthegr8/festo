@@ -126,3 +126,12 @@ select[datavalue="none"]:focus {
 .scroll-bar-none::-webkit-scrollbar {
   @apply hidden;
 }
+
+
+#nprogress .bar{
+  z-index:10000;
+  @apply bg-primary;
+}
+#nprogress .spinner{
+  @apply hidden;
+}
