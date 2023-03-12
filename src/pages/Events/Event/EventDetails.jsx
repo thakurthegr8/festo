@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import Typography from "@/src/components/General/Typography";
 import CalendarIcon from "@heroicons/react/20/solid/CalendarIcon";
 import ClockIcon from "@heroicons/react/24/outline/ClockIcon";
@@ -14,24 +14,17 @@ import AuthContext from "@/src/contexts/Auth";
 import { toast } from "react-toastify";
 import { timeStringNormalization } from "@/utils/date";
 import { loader } from "@/utils/image";
-import { makePayment } from "@/src/services/payment";
-import { useRouter } from "next/router";
 
-const feeFormat = (number) =>
-  new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(
-    number
-  );
+
 
 const EventDetails = (props) => {
   const ctx = useContext(AuthContext);
   const email = ctx.user.email;
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [booked, setBooked] = useState(props.ticket !== null);
-  const [paymentSucceeded, setPaymentSucceeded] = useState(false);
   if (!props.event) return <Loader />;
 
-  const book = async () => {
+  const bookEvent = async () => {
     try {
       setLoading(true);
       const req = await axios.post("/api/events/book", {
@@ -41,42 +34,17 @@ const EventDetails = (props) => {
       const res = await req.data;
       if (res) {
         console.log(res);
-        toast("success", { type: "success" });
+        toast("success");
         setBooked(true);
-        router.push(`/tickets/${res._id}`);
       }
     } catch (error) {
       console.log(error);
-      toast("error", { type: "error" });
+      toast("error");
     } finally {
       setLoading(false);
     }
   };
-
-  const bookEvent = async () => {
-    console.log(props.event?.fees);
-    if (props.event?.fees !== undefined) {
-      const params = {
-        amount: props.event.fees,
-        merchant: props.event.name,
-        image: props.event.media_url,
-      };
-      try {
-        await makePayment(params, (response) => {
-          if (response) book();
-        });
-      } catch (error) {
-        console.log(error);
-      } finally {
-        return;
-      }
-    } else {
-      book();
-    }
-  };
-  useEffect(() => {
-    if (paymentSucceeded) book();
-  }, [paymentSucceeded]);
+  console.log(props);
   return (
     <Col styles="gap-4 md:flex-row">
       <Col styles="w-full md:w-1/3 justify-center items-center h-72 md:h-96 rounded-xl">
@@ -107,9 +75,7 @@ const EventDetails = (props) => {
           </Row>
           <Row styles="gap-2">
             <ClockIcon className="w-6 h-6 text-primary" />
-            <Typography variant="font-bold uppercase">
-              {timeStringNormalization(props.event.time)}
-            </Typography>
+            <Typography variant="font-bold uppercase">{timeStringNormalization(props.event.time)}</Typography>
           </Row>
         </Row>
         <Row styles="gap-2">
@@ -120,11 +86,7 @@ const EventDetails = (props) => {
         </Row>
         <Row>
           <Button onClick={bookEvent} loading={loading} disabled={booked}>
-            {booked
-              ? "Booked"
-              : props.event?.fees
-              ? `Book now for ${feeFormat(props.event?.fees)}`
-              : `Book now for free`}
+            {booked ? "Booked" : "Book Now"}
           </Button>
         </Row>
       </Col>
