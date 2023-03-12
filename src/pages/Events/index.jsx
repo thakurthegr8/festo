@@ -52,7 +52,7 @@ const Events = () => {
         <Navbar />
       </Container>
       <Container styles="max-w-5xl">
-        <Col styles="gap-8 pb-8">
+        <Col styles="gap-0 md:gap-8 pb-2">
           {/* <TrendingEvents /> */}
           <EventGallery />
         </Col>

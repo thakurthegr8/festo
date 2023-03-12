@@ -13,6 +13,7 @@ const Button = (props) => {
       onClick={onClick}
       type={props.type}
       disabled={props.loading || props.disabled}
+      role={props.role}
     >
       {props.loading ? <Loading /> : children}
     </button>
@@ -26,6 +27,7 @@ Button.defaultProps = {
   variant: "btn-primary",
   type: "submit",
   loading: false,
+  role: "action",
   onClick: (e) => null,
 };
 
@@ -36,4 +38,5 @@ Button.propTypes = {
   type: PropTypes.string,
   loading: PropTypes.bool,
   disabled: PropTypes.bool,
+  role: PropTypes.string,
 };

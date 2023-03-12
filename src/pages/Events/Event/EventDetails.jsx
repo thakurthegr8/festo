@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Typography from "@/src/components/General/Typography";
 import CalendarIcon from "@heroicons/react/20/solid/CalendarIcon";
 import ClockIcon from "@heroicons/react/24/outline/ClockIcon";
@@ -28,6 +28,7 @@ const EventDetails = (props) => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [booked, setBooked] = useState(props.ticket !== null);
+  const parentRef = useRef(null);
   if (!props.event) return <Loader />;
 
   const book = async () => {
@@ -76,16 +77,17 @@ const EventDetails = (props) => {
 
   return (
     <Col styles="gap-4 md:flex-row">
-      <Col styles="w-full md:w-1/3 justify-center items-center h-72 md:h-96 rounded-xl">
+      <Col
+        styles="w-36 h-52 md:w-1/4 md:h-96 relative  justify-center items-center rounded-xl overflow-hidden"
+        ref={parentRef}
+      >
         <Image
           loader={loader}
           src={props.event.media_url}
-          width={450}
-          height={800}
-          className="rounded-md aspect-2/3 h-full"
-          style={{ objectFit: "contain" }}
           alt={props.event.name}
-          loading="lazy"
+          fill
+          blurDataURL="/brand/Festo.svg"
+          priority
         />
       </Col>
       <Col styles="gap-4">

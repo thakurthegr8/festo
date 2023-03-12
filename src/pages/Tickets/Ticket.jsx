@@ -26,7 +26,7 @@ const Ticket = (props) => {
       <Container styles="max-w-5xl px-4 lg:px-0">
         <Navbar />
       </Container>
-      <Container styles="max-w-md">
+      <Container styles="max-w-md px-4 lg:px-0">
         <TicketItem>
           <Link href={`/events/${event._id}`}>
             <TicketItem.Header>
