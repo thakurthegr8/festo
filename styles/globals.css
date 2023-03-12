@@ -2,7 +2,9 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
+:root {
+  --color-primary: #f63232;
+}
 * {
   font-family: "Inter", sans-serif;
   -webkit-tap-highlight-color: transparent;
@@ -65,8 +67,8 @@ body {
 
 /* Icon */
 
-.btn-icon{
-  @apply  rounded-full text-black bg-transparent p-3 hover:bg-primary/20 active:bg-primary/50;
+.btn-icon {
+  @apply rounded-full text-black bg-transparent p-3 hover:bg-primary/20 active:bg-primary/50;
 }
 
 /* typography */
@@ -127,11 +129,12 @@ select[datavalue="none"]:focus {
   @apply hidden;
 }
 
-
-#nprogress .bar{
-  z-index:10000;
-  @apply bg-primary;
+#nprogress .bar {
+  z-index: 10000;
+  box-shadow: 0 0 10px var(--color-primary), 0 0 5px var(--color-primary);
+  background-color: var(--color-primary);
+  height:4px;
 }
-#nprogress .spinner{
+#nprogress .spinner {
   @apply hidden;
 }

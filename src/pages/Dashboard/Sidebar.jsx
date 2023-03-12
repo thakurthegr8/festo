@@ -11,13 +11,14 @@ import Typography from "@/src/components/General/Typography";
 import MapPinIcon from "@heroicons/react/24/outline/MapPinIcon";
 import MenuIcon from "@heroicons/react/24/outline/Bars3Icon";
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon";
+import FunnelIcon from "@heroicons/react/24/outline/FunnelIcon";
 import Button from "@/src/components/General/Button";
 
 const sidebarLinks = [
   { name: "Dashboard", link: "/dashboard", Icon: ChartIcon },
   { name: "Events", link: "/dashboard/events", Icon: CalendarIcon },
   { name: "Groups", link: "/dashboard/groups", Icon: UserGroupIcon },
-  { name: "Categories", link: "/dashboard/categories", Icon: UserGroupIcon },
+  { name: "Categories", link: "/dashboard/categories", Icon: FunnelIcon },
   { name: "Locations", link: "/dashboard/locations", Icon: MapPinIcon },
 ];
 
