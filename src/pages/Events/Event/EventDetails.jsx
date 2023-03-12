@@ -85,9 +85,11 @@ const EventDetails = (props) => {
           loader={loader}
           src={props.event.media_url}
           alt={props.event.name}
-          fill
-          blurDataURL="/brand/Festo.svg"
+          style={{ objectFit: "cover" }}
+          placeholder="blur"
+          blurDataURL="/brand/loading-state.gif"
           priority
+          fill
         />
       </Col>
       <Col styles="gap-4">
