@@ -22,12 +22,12 @@ const Navbar = (props) => {
       <Row styles="gap-4">
         <Link href="/dashboard/create-event">
           <Button variant="btn-icon">
-            <PlusIcon className="w-6 h-6" />
+            <PlusIcon className="w-5 h-5" />
           </Button>
         </Link>
         <Link href="/dashboard">
           <Button variant="btn-icon">
-            <UserIcon className="w-6 h-6" />
+            <UserIcon className="w-5 h-5" />
           </Button>
         </Link>
         <AccountAvatar />

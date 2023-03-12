@@ -21,7 +21,7 @@ const EventsByCategories = (props) => {
         {props.events &&
           props.events.map((item, index) => (
             <Link href={`/events/${item._id}`} key={index}>
-              <Col styles="h-72 w-52 rounded-md">
+              <Col styles="h-52 w-36 md:h-72 md:w-44 rounded-md">
                 <Image
                   loader={loader}
                   src={item.media_url}
@@ -33,7 +33,7 @@ const EventsByCategories = (props) => {
                   loading="lazy"
                 />
                 <Typography variant="font-bold capitalize">
-                  {item.name.length > 22 ? `${item.name.substring(0,22)}...` : item.name}
+                  {item.name.length > 16 ? `${item.name.substring(0,16)}...` : item.name}
                 </Typography>
               </Col>
             </Link>

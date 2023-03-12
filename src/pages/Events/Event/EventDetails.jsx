@@ -82,8 +82,8 @@ const EventDetails = (props) => {
           src={props.event.media_url}
           width={450}
           height={800}
-          className="rounded-md aspect-2/3 h-full shadow-md"
-          style={{ objectFit: "cover" }}
+          className="rounded-md aspect-2/3 h-full"
+          style={{ objectFit: "contain" }}
           alt={props.event.name}
           loading="lazy"
         />

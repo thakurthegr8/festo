@@ -81,10 +81,10 @@ const Tickets = (props) => {
 
   return (
     <Col>
-      <Container styles="max-w-5xl">
+      <Container styles="max-w-5xl px-4 md:px-0">
         <Navbar />
       </Container>
-      <Container styles="max-w-md">
+      <Container styles="max-w-md px-4 md:px-0">
         <Col styles="gap-2 py-8">
           <Typography variant="text-title font-black">
             Upcoming Events

@@ -23,7 +23,7 @@ const Ticket = (props) => {
   const { location, type, group_ref } = event;
   return (
     <Col>
-      <Container styles="max-w-5xl">
+      <Container styles="max-w-5xl px-4 lg:px-0">
         <Navbar />
       </Container>
       <Container styles="max-w-md">
