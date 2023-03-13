@@ -40,6 +40,7 @@ const Ticket = (props) => {
                     width={64}
                     height={64}
                     loader={loader}
+                    alt={event.name}
                   />
                   <Col>
                     <Typography variant="text-heading font-bold capitalize">

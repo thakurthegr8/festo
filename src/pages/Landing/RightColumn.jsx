@@ -9,7 +9,7 @@ const RightColumn = () => {
       <Typography variant="text-white text-title mt-12 ml-12">
         Let us make your next event unforgettable.
       </Typography>
-      <Image src="brand/landing-hero.svg" width={1000} height={500} />
+      <Image src="brand/landing-hero.svg" width={1000} height={500} alt="festo-landing" priority/>
     </Col>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import dynamic from "next/dynamic";
 import Button from "../../components/General/Button";
 import Row from "../../components/Layout/Row";
 import Image from "next/image";
@@ -6,6 +7,7 @@ import PlusIcon from "@heroicons/react/20/solid/PlusIcon";
 import UserIcon from "@heroicons/react/20/solid/UserIcon";
 import AccountAvatar from "@/src/elements/AccountAvatar";
 import Link from "next/link";
+
 
 const Navbar = (props) => {
   return (
@@ -16,7 +18,7 @@ const Navbar = (props) => {
     >
       {!props.withoutLogo && (
         <Link href="/events">
-          <Image src="/brand/Festo.svg" width={74} height={39} />
+          <Image src="/brand/Festo.svg" width={74} height={39} alt="festo-logo"/>
         </Link>
       )}
       <Row styles="gap-4">

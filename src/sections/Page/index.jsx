@@ -7,6 +7,7 @@ const Page = (props) => {
     <>
       <Head>
         <title>{props.title}</title>
+        <meta name="description" content={props.description} />
       </Head>
       {props.children}
     </>
@@ -17,8 +18,10 @@ export default Page;
 
 Page.defaultProps = {
   title: "New Page",
+  description: "Page description",
 };
 
 Page.propTypes = {
   title: PropTypes.string,
+  description: PropTypes.string,
 };

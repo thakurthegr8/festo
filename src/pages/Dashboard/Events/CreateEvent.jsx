@@ -116,6 +116,7 @@ const CreateEvent = () => {
                 src={URL.createObjectURL(imageBlob)}
                 width={200}
                 height={200}
+                alt="image-to-upload"
               />
             )}
             <Col styles="justify-center items-center bg-white rounded-full shadow-md">

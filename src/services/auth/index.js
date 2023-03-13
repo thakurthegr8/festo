@@ -1,6 +1,6 @@
 import OktaProvider from "next-auth/providers/okta";
 
-export default {
+const auth = {
   providers: [
     OktaProvider({
       clientId: process.env.NEXT_PUBLIC_OKTA_CLIENT_ID,
@@ -40,3 +40,5 @@ export default {
     },
   },
 };
+
+export default auth;

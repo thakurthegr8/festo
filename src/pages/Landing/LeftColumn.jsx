@@ -9,7 +9,7 @@ import Container from "@/src/components/Layout/Container";
 const LeftColumn = () => {
   return (
     <Col styles="justify-center items-center gap-4 w-full">
-      <Image src="brand/Festo.svg" width={200} height={100} />
+      <Image src="brand/Festo.svg" width={200} height={100} alt="logo"/>
       <Typography>Login to continue</Typography>
       <Button onClick={() => signIn("okta")}>Login with Okta</Button>
     </Col>

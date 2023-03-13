@@ -33,6 +33,7 @@ const DashboardEventPage = (props) => {
               src={props.event.media_url}
               width={200}
               height={200}
+              alt={props.event.name}
             />
           </Col>
           <Col styles="col-span-2">

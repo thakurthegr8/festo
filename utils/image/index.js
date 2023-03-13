@@ -1,6 +1,14 @@
 export const loader = ({ src }) => {
   const [first, second] = src.split(":");
-  return `https:${second}`;
+  const urlChunks = second.split("/");
+  console.log(
+    urlChunks.slice(2, 5).join("/") +
+      "/c_crop,h_300,w_200/" +
+      urlChunks.slice(5).join("/")
+  );
+  return `https://${urlChunks
+    .slice(2, 6)
+    .join("/")}/c_fill,h_300,w_200/${urlChunks.slice(6).join("/")}`;
 };
 
 export const shimmer = (w, h) => `

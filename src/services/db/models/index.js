@@ -4,4 +4,6 @@ import Ticket from "./Ticket";
 import Location from "./Location";
 import Category from "./Category";
 
-export default { Event, Group, Ticket, Location, Category };
+const models = { Event, Group, Ticket, Location, Category };
+
+export default models;

@@ -22,7 +22,7 @@ const CreateCategory = () => {
       createCategory.onSubmit(formData);
       setConfirmSubmission(false);
     }
-  }, [confirmSubmission]);
+  }, [confirmSubmission, formData]);
   return (
     <Col styles="gap-4">
       <Container styles={classes.categoriesContainer}>

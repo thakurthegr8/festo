@@ -26,7 +26,10 @@ const EventsByCategories = (props) => {
                     alt={item.name}
                     style={{objectFit:"cover"}}
                     placeholder="blur"
-                    blurDataURL={"/brand/loading-state.gif"}
+                    sizes="25vw"
+                    responsive
+                    blurDataURL={"/brand/Festo.svg"}
+                    loading="eager"
                     fill
                   />
                 </Col>

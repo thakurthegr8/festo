@@ -3,38 +3,12 @@ import Col from "@/src/components/Layout/Col";
 import Container from "@/src/components/Layout/Container";
 import Navbar from "@/src/sections/Navbar";
 import EventsByCategories from "./EventsByCategories";
-import useEvents from "@/src/hooks/useEvents";
-import Loader from "@/src/elements/Loader";
-import Row from "@/src/components/Layout/Row";
+import Page from "@/src/sections/Page";
 
-const rearrange = (events) => {
-  if (!events) return [];
-  const set = new Set();
-  events.forEach((item) => set.add(item.type.name));
-  const setList = Array.from(set);
-  const arrangedEvents = setList.map((item) => {
-    const obj = { title: item, events: [] };
-    obj.events = events.filter((event) => event.type.name === item);
-    return obj;
-  });
-  console.log(arrangedEvents);
-  return arrangedEvents;
-};
-
-const EventGallery = () => {
-  const { events, loading } = useEvents();
-  const eventsByCategories = rearrange(events);
-
-  if (loading)
-    return (
-      <Row styles="w-full items-center justify-center flex-1 h-full pt-36">
-        <Loader />
-      </Row>
-    );
-
+const EventGallery = (props) => {
   return (
     <>
-      {eventsByCategories.map((item, index) => (
+      {props.events.map((item, index) => (
         <EventsByCategories
           title={item.title}
           events={item.events}
@@ -45,19 +19,20 @@ const EventGallery = () => {
   );
 };
 
-const Events = () => {
+const Events = (props) => {
   return (
-    <Col>
-      <Container styles="max-w-5xl px-4 md:px-0">
-        <Navbar />
-      </Container>
-      <Container styles="max-w-5xl">
-        <Col styles="gap-0 md:gap-8 pb-2">
-          {/* <TrendingEvents /> */}
-          <EventGallery />
-        </Col>
-      </Container>
-    </Col>
+    <Page title="Events">
+      <Col>
+        <Container styles="max-w-5xl px-4 md:px-0">
+          <Navbar />
+        </Container>
+        <Container styles="max-w-5xl">
+          <Col styles="gap-0 md:gap-8 pb-2">
+            <EventGallery events={props.events} />
+          </Col>
+        </Container>
+      </Col>
+    </Page>
   );
 };
 

@@ -8,11 +8,12 @@ import Row from "@/src/components/Layout/Row";
 import Avatar from "@/src/components/General/Avatar";
 import Typography from "@/src/components/General/Typography";
 import Link from "next/link";
+import Button from "@/src/components/General/Button";
 
 const AccountAvatar = () => {
   const ctx = useContext(AuthContext);
-  const name = ctx.user.name;
-  console.log(ctx);
+  const name = ctx?.user.name;
+  if(!ctx) return <Button styles="btn-primary"> Sign in</Button>
   return (
     <>
       <Menu className="relative z-10" as="div">

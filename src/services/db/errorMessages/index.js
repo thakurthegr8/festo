@@ -1,1 +1,3 @@
-export default { 11000: "Record Already Exists" };
+const errorMessages = { 11000: "Record Already Exists" };
+
+export default errorMessages;
