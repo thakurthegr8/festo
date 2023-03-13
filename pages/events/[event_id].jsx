@@ -10,21 +10,24 @@ const EventPage = (props) => {
 
 export default EventPage;
 
-EventPage.auth = true;
+EventPage.auth = false;
 
 export const getServerSideProps = withSession(
   withApiSession(async (ctx) => {
     const { url } = ctx.req;
-    console.log(ctx.req.user);
+    console.log(ctx.req?.user);
     try {
+      let ticketData = {};
       const event = await axios.get(`${url}/api/events/${ctx.query.event_id}`);
-      const ticket = await axios.post(
-        `${url}/api/events/bookings/${ctx.query.event_id}`,
-        {
-          user: ctx.req.user,
-        }
-      );
-      const ticketData = await ticket.data;
+      if (ctx.req?.user) {
+        const ticket = await axios.post(
+          `${url}/api/events/bookings/${ctx.query.event_id}`,
+          {
+            user: ctx.req.user,
+          }
+        );
+        ticketData = await ticket.data;
+      }
       const eventData = await event.data;
       if (Object.keys(eventData).length == 0) {
         return { notFound: true };

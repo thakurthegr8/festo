@@ -5,12 +5,12 @@ import withApiSession from "@/src/middlewares/withApiSession";
 import axios from "axios";
 
 const TicketsPage = (props) => {
-  return <Tickets tickets={props.tickets}/>;
+  return <Tickets tickets={props.tickets} />;
 };
 
 export default TicketsPage;
 
-TicketsPage.auth = true;
+TicketsPage.auth = false;
 
 export const getServerSideProps = withSession(
   withApiSession(async (ctx) => {

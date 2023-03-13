@@ -16,6 +16,7 @@ import { timeStringNormalization } from "@/utils/date";
 import { loader } from "@/utils/image";
 import { makePayment } from "@/src/services/payment";
 import { useRouter } from "next/router";
+import SignInButton from "@/src/elements/SignInButton";
 
 const feeFormat = (number) =>
   new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(
@@ -24,13 +25,12 @@ const feeFormat = (number) =>
 
 const EventDetails = (props) => {
   const ctx = useContext(AuthContext);
-  const email = ctx.user.email;
+  const email = ctx?.user.email;
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [booked, setBooked] = useState(props.ticket !== null);
   const parentRef = useRef(null);
-  if (!props.event) return <Loader />;
-
+  console.log(ctx);
   const book = async () => {
     try {
       setLoading(true);
@@ -52,7 +52,6 @@ const EventDetails = (props) => {
       setLoading(false);
     }
   };
-
   const bookEvent = async () => {
     console.log(props.event?.fees);
     if (props.event?.fees !== undefined) {
@@ -120,13 +119,17 @@ const EventDetails = (props) => {
           </Typography>
         </Row>
         <Row>
-          <Button onClick={bookEvent} loading={loading} disabled={booked}>
-            {booked
-              ? "Booked"
-              : props.event?.fees
-              ? `Book now for ${feeFormat(props.event?.fees)}`
-              : `Book now for free`}
-          </Button>
+          {ctx ? (
+            <Button onClick={bookEvent} loading={loading} disabled={booked}>
+              {booked
+                ? "Booked"
+                : props.event?.fees
+                ? `Book now for ${feeFormat(props.event?.fees)}`
+                : `Book now for free`}
+            </Button>
+          ) : (
+            <SignInButton callbackUrl={router.asPath} />
+          )}
         </Row>
       </Col>
     </Col>

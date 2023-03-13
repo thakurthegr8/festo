@@ -8,7 +8,7 @@ const EventsPage = (props) => {
 
 export default EventsPage;
 
-EventsPage.auth = true;
+EventsPage.auth = false;
 
 export const getServerSideProps = withSession(async (ctx) => {
   const { url } = ctx.req;

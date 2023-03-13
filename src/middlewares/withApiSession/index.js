@@ -10,6 +10,7 @@ const withApiSession = (handler) => {
       ctx.req.user = token.email;
       return handler(ctx);
     }
+    return handler(ctx);
   };
 };
 
