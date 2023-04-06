@@ -1,4 +1,6 @@
 ## Introduction
+![image](https://user-images.githubusercontent.com/68949544/230344624-4ee1013e-14e0-47ea-aa35-5954fb64bb16.png)
+
 
 The college event management app is a software application that enables event managers, organizers, and attendees to easily plan, organize, and manage events on the college campus. The application will be designed to work on both iOS and Android mobile devices and will provide users with a wide range of features to help manage events effectively.
 
