@@ -1,8 +1,19 @@
 ## Introduction
-![image](https://user-images.githubusercontent.com/68949544/230344624-4ee1013e-14e0-47ea-aa35-5954fb64bb16.png)
-
-
 The college event management app is a software application that enables event managers, organizers, and attendees to easily plan, organize, and manage events on the college campus. The application will be designed to work on both iOS and Android mobile devices and will provide users with a wide range of features to help manage events effectively.
+
+![image](https://user-images.githubusercontent.com/68949544/230344624-4ee1013e-14e0-47ea-aa35-5954fb64bb16.png)
+![image](https://user-images.githubusercontent.com/68949544/234926075-e9b079d0-996a-4155-9ec4-0909ad994fa9.png)
+![image](https://user-images.githubusercontent.com/68949544/234926258-94fbeaa9-4231-4766-8db5-2ca7d95dd23c.png)
+![image](https://user-images.githubusercontent.com/68949544/234926330-86354b4d-cd73-4711-919f-4666722e22a2.png)
+![image](https://user-images.githubusercontent.com/68949544/234926456-8aa4689d-254b-4ae0-a677-c14d4db02713.png)
+![image](https://user-images.githubusercontent.com/68949544/234926502-800fc166-728c-4b09-934e-82878f0217c7.png)
+![image](https://user-images.githubusercontent.com/68949544/234926560-ec709104-264c-4f93-a667-57ee3abf2202.png)
+![image](https://user-images.githubusercontent.com/68949544/234926638-6cf6980a-9f4b-47b7-a421-5cfaf36c0258.png)
+![image](https://user-images.githubusercontent.com/68949544/234926764-c9a7cd68-8423-4109-866c-e5c0ce10e1d7.png)
+![image](https://user-images.githubusercontent.com/68949544/234926832-422e4713-b4a3-4a95-ad0a-10c746421a94.png)
+![image](https://user-images.githubusercontent.com/68949544/234926906-a96017e1-3958-443a-9d8b-5ad83cb909d0.png)
+
+
 
 ## Functional Requirements
 
